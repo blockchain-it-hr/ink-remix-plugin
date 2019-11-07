@@ -1,0 +1,48 @@
+{
+  "name": "ink-remix-plugin",
+  "author": "Darko Macesic <darko@blockchain-it.hr>, Edi Sinovcic <edi@blockchain-it.hr>",
+  "version": "1.0.0",
+  "description": "ink! Plugin for Remix IDE",
+  "scripts": {
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "npm install && rimraf dist && webpack --config webpack.prod.js",
+    "serve": "serve -l 3000 dist/",
+    "start": "npm run build && npm run serve"
+  },
+  "keywords": [
+    "substrate",
+    "ink",
+    "remix",
+    "plugin"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@remixproject/plugin": "^0.1.13",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "rimraf": "2.6.3",
+    "sass-loader": "^8.0.0",
+    "serve": "^11.1.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2"
+  }
+}
