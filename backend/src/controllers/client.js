@@ -28,15 +28,11 @@ class Client {
     }
 
     call(message, send) {
-        const {service, fn, args, permissions} = message;
+        const {service, fn, args, projectName} = message;
         try {
             //this.validatePermissions(permissions) //For checking and requesting needed permissions from users //TODO: Update when Remix implements this
             const func = this.services[service][fn];
-            args.workingDirectory = uuid();
             //Create directory if directory does not exist
-            const dir = './storage/' + args.workingDirectory;
-            args.projectName = "test"; //TODO: update
-            args.dir = dir;
             if (!fs.existsSync(dir)) {
                 this.services[service]["init"](args, (error, result) => {
                     console.log(result)
