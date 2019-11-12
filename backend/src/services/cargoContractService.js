@@ -1,7 +1,7 @@
 const {spawn} = require('child_process')
 const fs = require('fs');
-const path = require('path')
-const uuid = require('uuid4')
+const path = require('path');
+const uuid = require('uuid4');
 
 class CargoContractService {
 
@@ -9,7 +9,7 @@ class CargoContractService {
 
     create(projectName, callback){
         const sessionID = uuid();
-        const dir = path.resolve(__dirname, '../storage/', sessionID);
+        const dir = path.resolve(__dirname, '../../storage/', sessionID);
         const options = {cwd: dir, shell: true};
         const cmd = `cargo-contract contract new ${projectName}`;
 
@@ -28,7 +28,7 @@ class CargoContractService {
     }
 
     build(sessionID, projectName, callback){
-        const projectPath = path.resolve(__dirname, '../storage/', sessionID, '/', projectName);
+        const projectPath = path.resolve(__dirname, '../../storage/', sessionID, projectName);
         const options = {cwd: projectPath, shell: true};
         const cmd = "cargo-contract contract build && cargo +nightly run -p abi-gen";
 
@@ -38,12 +38,12 @@ class CargoContractService {
         });
         child.stderr.on('data', (buffer) => {
             callback({type: "error", message: `stderr: ${buffer}`})
-        })
+        });
         child.on('close', (code) => { 
-            const wasm = fs.readFileSync(path.resolve(projectPath, "target", `${projectName}.wasm`))
-            const abi = fs.readFileSync(path.resolve(projectPath, "target", `abi.json`))
-            const wasm_base64 = Buffer.from(wasm).toString('base64')
-            const abi_base64 = Buffer.from(abi).toString('base64')
+            const wasm = fs.readFileSync(path.resolve(projectPath, "target", `${projectName}.wasm`));
+            const abi = fs.readFileSync(path.resolve(projectPath, "target", `abi.json`));
+            const wasm_base64 = Buffer.from(wasm).toString('base64');
+            const abi_base64 = Buffer.from(abi).toString('base64');
             callback({type: "build", code: code, wasm: wasm_base64, abi: abi_base64})
         })
     }

@@ -30,6 +30,7 @@ class Router {
 
 const router = new Router();
 
+//ws.send('{"projectName": "test1"}}');
 router.app.ws('/new', async (socket, req) => {
     try {
         Router.validateRequest(req);
@@ -46,6 +47,7 @@ router.app.ws('/new', async (socket, req) => {
     }
 });
 
+//ws.send('{"sessionID": "068dd2fa-a083-4e9c-875b-63c4ad9158ed", "projectName": "test1"}')
 router.app.ws('/build', async (socket, req) => {
     try {
         Router.validateRequest(req);
