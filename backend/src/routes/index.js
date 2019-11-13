@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 require('express-ws')(app);
+const uuid = require('uuid4');
 const ErrorHandler = require('../errors/errors').ErrorHandler;
 
 class Router {
@@ -30,13 +31,23 @@ class Router {
 
 const router = new Router();
 
+router.app.use(function (req, res, next) {
+    try {
+        Router.validateRequest(req);
+    } catch (e) {
+        return res.send(JSON.stringify(ErrorHandler(e)));
+    }
+    return next();
+  });
+
+
 //ws.send('{"projectName": "test1"}}');
 router.app.ws('/new', async (socket, req) => {
     try {
-        Router.validateRequest(req);
         socket.on('message', (message) => {
             console.log(`Received message ${message} from user`);
-            const {projectName} = JSON.parse(message);
+            const {sessionID, projectName} = JSON.parse(message);
+            if(sessionID === undefined) { sessionID = uuid() }
             cargoContractService.create(projectName, (result) => {
                 console.log(JSON.stringify(result));
                 socket.send(JSON.stringify(result))
@@ -50,10 +61,15 @@ router.app.ws('/new', async (socket, req) => {
 //ws.send('{"sessionID": "068dd2fa-a083-4e9c-875b-63c4ad9158ed", "projectName": "test1"}')
 router.app.ws('/build', async (socket, req) => {
     try {
-        Router.validateRequest(req);
         socket.on('message', (message) => {
             console.log(`Received message ${message} from user`);
             const {sessionID, projectName} = JSON.parse(message);
+            if(sessionID === undefined) {
+                cargoContractService.create(projectName, (result) => {
+                    console.log(JSON.stringify(result));
+                    socket.send(JSON.stringify(result))
+                })
+            }
             cargoContractService.build(sessionID, projectName, (result) => {
                 console.log(JSON.stringify(result));
                 socket.send(JSON.stringify(result))

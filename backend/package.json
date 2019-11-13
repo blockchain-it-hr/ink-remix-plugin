@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node src/app",
-    "build-env": "cd .. && docker build --file Dockerfile.env --tag blockchainit/rust-env:latest . && docker push blockchainit/rust-env:ink",
-    "build-cargo-contract": "cd .. && docker build --file Dockerfile.cargo-contract --tag blockchainit/ink-backend:latest . && docker push blockchainit/ink-backend"
+    "start": "node src/app"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
