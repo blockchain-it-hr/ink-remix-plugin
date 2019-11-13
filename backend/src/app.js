@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-const path = require('path');
+
+const path   = require('path');
 const dotenv = require('dotenv');
-const origins = require('./origins.json');
-dotenv.config(
-    {
-        path: path.resolve(process.cwd(), 'backend/.env')
-    }
-);
+const Logger = require('./utils/Logger');
 
-process.env.ORIGINS = origins;
+// env
+dotenv.config({ path: path.resolve(process.cwd(), 'backend/.env')});
+process.env.ORIGINS = require('./origins.json')
 
-require('./routes/index');
+// router
+Logger.log('Starting server...')
+require('./router')

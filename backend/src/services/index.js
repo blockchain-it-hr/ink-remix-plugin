@@ -1,3 +1,3 @@
 module.exports = {
-    cargoContractService: require('./cargoContractService')
+    cargoContractService: require('./cargo-contract/service')
 }
