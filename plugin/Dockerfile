@@ -1,5 +1,5 @@
 # build stage
-FROM node:10
+FROM node:10 as build
 LABEL stage=builder
 
 WORKDIR /app
@@ -11,7 +11,7 @@ RUN npm run build
 FROM nginx:alpine
 EXPOSE 80
 
-COPY --from=0 /app/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=0 /app/dist /usr/share/nginx/html
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,12 +1,19 @@
 {
   "name": "ink-backend",
+  "author": "Darko Macesic <darko@blockchain-it.hr>, Edi Sinovcic <edi@blockchain-it.hr>",
   "version": "0.0.1",
-  "private": true,
+  "description": "Backend service for ink! Remix Plugin",
   "scripts": {
-    "start": "node src/app",
-    "build-env": "cd .. && docker build --file Dockerfile.env --tag blockchainit/rust-env:latest . && docker push blockchainit/rust-env:ink",
-    "build-cargo-contract": "cd .. && docker build --file Dockerfile.cargo-contract --tag blockchainit/ink-backend:latest . && docker push blockchainit/ink-backend"
+    "start": "node src/app"
   },
+  "private": true,
+  "keywords": [
+    "substrate",
+    "ink",
+    "plugin",
+    "backend"
+  ],
+  "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

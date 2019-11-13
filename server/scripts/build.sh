@@ -12,11 +12,8 @@ fi
 echo "Building '$TAG' (on branch: $CIRCLE_BRANCH)"
 
 # build docker image
-docker build --file Dockerfile --tag blockchainit/ink-remix-plugin:$TAG .
-
-# To remove intermediate container, uncomment the line below
-# docker image prune --filter label=stage=builder -f
+docker build --file Dockerfile --tag blockchainit/ink-backend:$TAG .
 
 # push to dockerhub
 docker login -u $DOCKER_USER -p $DOCKER_PASS
-docker push blockchainit/ink-remix-plugin:$TAG
+docker push blockchainit/ink-backend:$TAG
