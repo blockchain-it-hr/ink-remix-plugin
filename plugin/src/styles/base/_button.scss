@@ -1,0 +1,35 @@
+@import './colors';
+
+.btn {
+    font-size: .9rem;
+    font-weight: 500 !important;
+    line-height: 1.5;
+    display: inline-block;
+    padding: .375rem .75rem;
+    user-select: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.btn--primary {
+    color: #fff;
+    border-color: $accent-color;
+    background-color: $accent-color;
+
+    &:hover {
+        color: #fff;
+        border-color: darken($accent-color, 10%);
+        background-color: darken($accent-color, 10%);
+    }
+
+    &:not(:disabled):not(.disabled):active {
+        color: #fff;
+        border-color: darken($accent-color, 10%);
+        background-color: darken($accent-color, 10%);
+    }    
+}

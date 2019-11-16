@@ -1,0 +1,38 @@
+@import '../../styles/base/colors';
+
+.list-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.3rem;
+    background-color: $secondary-color;
+    line-height: 1.6;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    .title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;   
+    }
+
+    .date {
+        font-size: 0.8rem;
+        color: darken($secondary-color, 40%);
+    }
+
+    &:hover {
+        background-color: darken($secondary-color, 2%);
+    }
+    
+    .chevron {
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover .chevron {
+        transform: translateX(-5px);
+    }
+}

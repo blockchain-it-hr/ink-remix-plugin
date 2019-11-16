@@ -16,8 +16,8 @@ export class RemixClient {
         });
     }
 
-    getFolder = async() => {
-        return this.client.call('fileManager', 'getFolder', '/browser');
+    getFolder = async (folder: string) => {
+        return this.client.call('fileManager', 'getFolder', 'browser/' + folder);
     }
 
     getCurrentFile = async () => {

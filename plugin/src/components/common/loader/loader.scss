@@ -1,3 +1,5 @@
+@import '../../../styles/base/colors';
+
 @keyframes loader {
     to { 
         transform: rotate(360deg); 
@@ -17,6 +19,16 @@
     border-top-color: $color;
     border-bottom-color: $color;
     animation: loader .8s ease infinite;
+}
+
+.loader--center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loader--inline {
+    position: relative;
 }
 
 .loader-sm:before {
