@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useDispatchContext } from "../../../state/store";
+import uuidv4 from 'uuid/v4';
 import { newProject } from "../../../state/actions";
-import { uuid4 } from "../../../utils";
-import { IProject } from "../../../types";
+import { useDispatchContext } from "../../../state/store";
 
 const CreateProjectFragment: React.FC = () => {
 
@@ -12,6 +11,7 @@ const CreateProjectFragment: React.FC = () => {
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({ projectName: e.currentTarget.value });
     }
+    
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -19,7 +19,7 @@ const CreateProjectFragment: React.FC = () => {
         const now  = new Date();
 
         const project = {
-            projectId: uuid4(),
+            projectId: uuidv4(),
             projectName: state.projectName,
             createdAt: now.toLocaleDateString('en-US', options)
         };

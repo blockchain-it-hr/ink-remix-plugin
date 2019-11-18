@@ -1,0 +1,47 @@
+@import './colors';
+
+.react-tabs {
+  
+    &__tab-list {
+        border-bottom: 1px solid $secondary-color;
+        margin: 0 0 1rem;
+        padding: 0;
+    }
+
+    &__tab {
+        display: inline-block;
+        color: darken($secondary-color, 20%);
+        font-size: 0.9rem;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
+        bottom: -1px;
+        position: relative;
+        list-style: none;
+        padding: 0.375rem 0.75rem;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    &__tab--selected {
+        background: #fff;
+        color: $primary-color;
+        border-bottom: 2px solid $primary-color;
+    }
+
+    &__tab--disabled {
+        color: darken($secondary-color, 20%);
+        cursor: default;
+    }
+
+    &__tab:focus {
+        outline: none;
+    }
+
+    &__tab-panel {
+        display: none;
+    }
+  
+    &__tab-panel--selected {
+        display: block;
+    }
+}

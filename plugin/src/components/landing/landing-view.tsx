@@ -6,7 +6,7 @@ import './landing-view.scss';
 const LandingView: React.FC = () => {
     const state = useStateContext();
     return (
-        <div id="container">
+        <div id="wrapper">
             <CreateProjectFragment />
             {state.projects.length > 0 && <RecentProjectsFragment projects={state.projects} />}
         </div>
