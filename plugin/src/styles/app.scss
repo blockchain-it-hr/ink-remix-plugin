@@ -1,0 +1,76 @@
+@import 'base/colors';
+@import 'base/typography';
+@import 'base/helpers';
+@import 'base/button';
+
+html {
+    line-height: 1.15;
+}
+
+body {
+    margin: 0;
+    font-family: $roboto;
+    font-size: 16px;
+    color: $primary-color;
+    background: $white-color;
+    transition: all 0.1s ease-in-out;
+}
+
+main {
+    display: block;
+    padding: 1rem;
+}
+
+label {
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: .5rem;
+}
+
+a {
+    color: inherit; 
+    text-decoration: inherit !important;
+
+    &:hover {
+        color: inherit; 
+    }
+}
+
+.form-control {
+    display: block;
+    box-sizing: border-box;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    width: 100%;
+    padding: .375rem .75rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: $primary-color;
+    border: 1px solid #dce4ec;
+    border-radius: .25rem;
+    background-color: #fff;
+    background-clip: padding-box;
+
+    &:focus {
+        outline: 0;
+        border-color: #c2c9cf;
+        box-shadow: none !important;
+    }
+}
+
+.group {
+    margin-bottom: 1rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+        border-bottom: $secondary-color 1px solid;
+    }
+}

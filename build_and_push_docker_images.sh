@@ -1,20 +1,19 @@
 #!/bin/bash
 
-
 #Build and push environment
-#docker build --file Dockerfile.env --tag blockchainit/rust-env:nightly .
-#docker push blockchainit/rust-env
+docker build --file server/Dockerfile.env --tag blockchainit/rust-env:nightly server
+docker push blockchainit/rust-env
 
 #Build and push cargo contract
-#docker build --file Dockerfile.cargo-contract --tag blockchainit/cargo-contract:latest .
-#docker push blockchainit/cargo-contract
+docker build --file server/Dockerfile.cargo-contract --tag blockchainit/cargo-contract:latest server
+docker push blockchainit/cargo-contract
 
-#Build and push frontend
-#$TAG = latest
-#docker build --file Dockerfile --tag blockchainit/ink-frontend:$TAG .
-#docker push blockchainit/ink-frontend
-
-#Build and push backend
+#Build and push server
 TAG=latest
-docker build --file backend/Dockerfile --tag blockchainit/ink-backend:$TAG backend
-docker push blockchainit/ink-backend
+docker build --file server/Dockerfile --tag blockchainit/ink-server:$TAG server
+docker push blockchainit/ink-server
+
+#Build and push plugin
+TAG=latest
+docker build --file plugin/Dockerfile --tag blockchainit/ink-plugin:$TAG plugin
+docker push blockchainit/ink-plugin

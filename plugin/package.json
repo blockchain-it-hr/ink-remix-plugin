@@ -1,14 +1,15 @@
 {
   "name": "ink-remix-plugin",
   "author": "Darko Macesic <darko@blockchain-it.hr>, Edi Sinovcic <edi@blockchain-it.hr>",
-  "version": "1.0.0",
-  "description": "ink! Plugin for Remix IDE",
+  "version": "0.0.1",
+  "description": "ink! plugin for Remix IDE",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "npm install && rimraf dist && webpack --config webpack.prod.js",
     "serve": "serve -l 3000 dist/",
     "start": "npm run build && npm run serve"
   },
+  "private": true,
   "keywords": [
     "substrate",
     "ink",
@@ -18,8 +19,10 @@
   "license": "ISC",
   "dependencies": {
     "@remixproject/plugin": "^0.1.13",
+    "@types/react-router-dom": "^5.1.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

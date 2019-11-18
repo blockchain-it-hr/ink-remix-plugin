@@ -1,2 +1,0 @@
-FROM blockchainit/rust-wasm-env:ink
-RUN cargo install --force --git https://github.com/paritytech/ink cargo-contract

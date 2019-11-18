@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './src/App';
-import { StateProvider } from './src/state/Store';
+import App from './src/app';
+import { StateProvider } from './src/state/store';
 
 const Root = () => (
     <StateProvider>

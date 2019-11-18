@@ -1,16 +1,16 @@
 version: "3"
 services:
-    frontend:
-        container_name: frontend
+    plugin:
+        container_name: plugin
         build:
-            context: ./frontend
+            context: ./plugin
             dockerfile: Dockerfile
         ports:
-            - "3000:3000"
-    backend:
-        container_name: backend
+            - "3000:80"
+    server:
+        container_name: server
         build:
-            context: ./backend
+            context: ./server
             dockerfile: Dockerfile
         ports:
             - "65520:65520"

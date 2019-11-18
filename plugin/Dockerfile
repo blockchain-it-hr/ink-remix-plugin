@@ -1,19 +1,17 @@
+# build stage
 FROM node:10 as build
+LABEL stage=builder
 
-ARG WORKSPACE_DIR=/usr/src/app
-WORKDIR ${WORKSPACE_DIR}
+WORKDIR /app
 
 COPY . .
-
-RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
 RUN npm run build
 
-FROM node:10-alpine
-ARG WORKSPACE_DIR=/usr/src/app
+# nginx stage
+FROM nginx:alpine
+EXPOSE 80
 
-COPY --from=build ${WORKSPACE_DIR}/dist ${WORKSPACE_DIR}/dist
-COPY --from=build ${WORKSPACE_DIR}/package.json ${WORKSPACE_DIR}/package.json 
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 3000
-CMD ["npm", "run", "serve"]
+CMD ["nginx", "-g", "daemon off;"]
