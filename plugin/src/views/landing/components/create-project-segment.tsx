@@ -3,7 +3,7 @@ import uuidv4 from 'uuid/v4';
 import { newProject } from "../../../state/actions";
 import { useDispatchContext } from "../../../state/store";
 
-const CreateProjectFragment: React.FC = () => {
+const CreateProjectSegment: React.FC = () => {
 
     const dispatch = useDispatchContext();
     const [state, setState] = useState({ projectName: null });
@@ -55,4 +55,4 @@ const CreateProjectFragment: React.FC = () => {
     );
 }
 
-export default CreateProjectFragment;
+export default CreateProjectSegment;

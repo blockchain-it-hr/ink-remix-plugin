@@ -34,10 +34,11 @@
         border-bottom-left-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
         overflow-y: scroll;
+        resize: vertical;
 
         .log {
             display: block;
-            font-size: 0.9rem !important;
+            font-size: 0.8rem !important;
             color: $primary-color;
             overflow: hidden;
             font-family: $roboto-mono;

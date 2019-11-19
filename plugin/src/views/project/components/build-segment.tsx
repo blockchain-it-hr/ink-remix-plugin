@@ -1,9 +1,9 @@
 import React from 'react';
-import useConsole from '../../console/console-hook';
+import { useConsole } from '../../../components/console';
 
 const BuildFragment: React.FC = () => {
 
-    let consoleManager = useConsole({ maxLength: 20 });
+    let consoleManager = useConsole({ maxLength: 100 });
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

@@ -2,8 +2,7 @@ import React from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { useStateContext } from '../../state/store';
-import ArtifactsFragment from './fragments/artifacts-fragment';
-import BuildFragment from './fragments/build-fragment';
+import { ArtifactSegment, BuildSegment } from './components';
 import './project-view.scss';
 
 const ProjectView: React.FC = () => {
@@ -35,10 +34,10 @@ const ProjectView: React.FC = () => {
                     <Tab>Artifacts</Tab>
                 </TabList>
                 <TabPanel>
-                    <BuildFragment />
+                    <BuildSegment />
                 </TabPanel>
                 <TabPanel >
-                    <ArtifactsFragment />
+                    <ArtifactSegment />
                 </TabPanel>
             </Tabs>
         </div>

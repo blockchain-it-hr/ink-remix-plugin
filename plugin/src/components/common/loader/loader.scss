@@ -13,11 +13,11 @@
     width: $size;
     height: $size;
     border-radius: 50%;
+    border-top-color: $accent-color !important;
+    border-bottom-color: $accent-color !important;
     margin-top: -($size / 2);
     margin-left: -($size / 2);
     border: 2px solid transparent;
-    border-top-color: $color;
-    border-bottom-color: $color;
     animation: loader .8s ease infinite;
 }
 
@@ -28,7 +28,9 @@
 }
 
 .loader--inline {
-    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5rem;
 }
 
 .loader-sm:before {

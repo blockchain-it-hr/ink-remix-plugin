@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Console } from './console';
 
 export interface ConsoleOptions {
     maxLength: number
 }
 
-const useConsole = (options: ConsoleOptions) => {
+export const useConsole = (options: ConsoleOptions) => {
     const [state, setState] = useState([]);
 
     const push = (log: string) => {
@@ -22,5 +21,3 @@ const useConsole = (options: ConsoleOptions) => {
         Component: <Console logs={state} />
     }
 }
-
-export default useConsole;

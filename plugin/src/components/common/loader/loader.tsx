@@ -7,7 +7,6 @@ export interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({ size, position }) => {
-
     const className = [`loader-${size}`, `loader--${position}`].join(' ');
     return <div className={className}></div>;
 }

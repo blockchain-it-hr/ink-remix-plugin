@@ -1,14 +1,14 @@
 import React from 'react';
 import { useStateContext } from '../../state/store';
-import { CreateProjectFragment, RecentProjectsFragment } from './fragments';
+import { CreateProjectSegment, RecentProjectsSegment } from './components';
 import './landing-view.scss';
 
 const LandingView: React.FC = () => {
     const state = useStateContext();
     return (
         <div id="wrapper">
-            <CreateProjectFragment />
-            {state.projects.length > 0 && <RecentProjectsFragment projects={state.projects} />}
+            <CreateProjectSegment />
+            {state.projects.length > 0 && <RecentProjectsSegment projects={state.projects} />}
         </div>
     );
 }
