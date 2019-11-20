@@ -32,15 +32,16 @@
         padding: 0.8rem;
         background-color: $secondary-color;
         border-bottom-left-radius: 0.25rem;
-        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
         overflow-y: scroll;
         resize: vertical;
+        white-space: nowrap;
 
         .log {
             display: block;
             font-size: 0.8rem !important;
             color: $primary-color;
-            overflow: hidden;
+            overflow: visible;
             font-family: $roboto-mono;
         }
     }

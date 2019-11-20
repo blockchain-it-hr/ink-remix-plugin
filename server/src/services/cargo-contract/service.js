@@ -30,7 +30,12 @@ class CargoContractService {
             const cargo = fs.readFileSync(cargoPath).toString();
 
             Logger.log(`Created "${projectName}" (projectId: ${projectId})`);
-            callback({ type: "project", projectId, projectName, lib, cargo });
+            callback({ 
+                type: "project",
+                payload: {
+                    projectId, projectName, lib, cargo
+                } 
+            });
         });
     }
 
@@ -56,7 +61,13 @@ class CargoContractService {
                 const abi = fs.readFileSync(abiPath).toString();
     
                 Logger.log(`Finished building "${projectName}" (projectId: ${projectId})`);
-                callback({ type: "build", wasm: wasmEncoded, abi });
+                callback({ 
+                    type: "build", 
+                    payload: { 
+                        wasm: wasmEncoded, 
+                        abi 
+                    }
+                });
             });
         }
 

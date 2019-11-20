@@ -28,7 +28,6 @@ export class RemixClient {
         return new Promise<string>(async (resolve, reject) => {
             try {
                 await this.client.call('fileManager', 'setFile', name, content)
-                await this.client.call('fileManager', 'switchFile', name)
                 resolve(this.getBrowserPath(name));
             } catch (err) {
                 reject(err);

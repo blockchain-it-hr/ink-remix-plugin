@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import uuidv4 from 'uuid/v4';
+import inkService from '../../../ink';
+import { IMessage } from "../../../ink/types";
 import { newProject } from "../../../state/actions";
 import { useDispatchContext } from "../../../state/store";
+import { remixClient } from "../../../utils/remix-client";
 
 const CreateProjectSegment: React.FC = () => {
 
@@ -11,21 +13,36 @@ const CreateProjectSegment: React.FC = () => {
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({ projectName: e.currentTarget.value });
     }
+
+    const onMessage = async (message: IMessage, disconnect: () => void) => {
+        switch (message.type) {
+            case 'project': {
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const now  = new Date();
+
+                let project = message.payload;
+                project.createdAt = now.toLocaleDateString('en-US', options);
+
+                await remixClient.createFile(`.ink/${project.projectName}/lib.rs`, project.lib);
+                await remixClient.createFile(`.ink/${project.projectName}/Cargo.toml`, project.cargo);
+                
+                dispatch(newProject(project));
+                disconnect();
+                break;
+            }
+            case 'error': {
+                console.log(message.payload);
+                disconnect();
+                break;
+            }
+            default: 
+                break;
+        }
+    }
     
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const now  = new Date();
-
-        const project = {
-            projectId: uuidv4(),
-            projectName: state.projectName,
-            createdAt: now.toLocaleDateString('en-US', options)
-        };
-
-        // TODO: ws logic
-        dispatch(newProject(project));
+        inkService.createProject({ projectName: state.projectName }, onMessage);
     }   
 
     return (

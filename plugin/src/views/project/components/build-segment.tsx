@@ -1,13 +1,43 @@
 import React from 'react';
 import { useConsole } from '../../../components/console';
+import inkService from '../../../ink';
+import { IMessage, IProject } from '../../../ink/types';
 
-const BuildFragment: React.FC = () => {
+export interface BuildFragmentProps {
+    project: IProject
+}
 
+const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
     let consoleManager = useConsole({ maxLength: 100 });
-
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    
+    const onMessage = async (message: IMessage, disconnect: () => void) => {
+        switch (message.type) {
+            case 'stdout': {
+                consoleManager.push(message.payload);
+                break;
+            }
+            case 'stderr': {
+                consoleManager.push(message.payload);
+                break;
+            }
+            case 'error': {
+                console.error(message.payload);
+                disconnect();
+                break;
+            }
+            case 'build': {
+                consoleManager.push("Build successful");
+                disconnect();
+                break;
+            }
+            default: 
+                break;
+        }
+    }
+    
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        consoleManager.push('Hello world!'); // TODO: add actual logs
+        inkService.buildProject(project, onMessage);
     }
 
     return (
