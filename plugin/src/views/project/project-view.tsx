@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { useStateContext } from '../../state/store';
-import { ArtifactSegment, BuildSegment } from './components';
+import ProjectContainer from './project-container';
 import './project-view.scss';
 
 const ProjectView: React.FC = () => {
-    let history = useHistory();
     let params: any = useParams();
 
     const state = useStateContext();
-    const project = state.projects.filter(p => p.projectId == params.projectId)[0];
+    const project = state.projects[params.projectId];
 
     if (project === undefined) {
+        const history = useHistory();
         history.push('/');
         return null;
     }
@@ -28,18 +27,7 @@ const ProjectView: React.FC = () => {
                     <span className="breadcrumb__item">{project.projectName}</span>
                 </div>   
             </div>
-            <Tabs>
-                <TabList>
-                    <Tab>Build</Tab>
-                    <Tab>Artifacts</Tab>
-                </TabList>
-                <TabPanel>
-                    <BuildSegment project={project} />
-                </TabPanel>
-                <TabPanel >
-                    <ArtifactSegment />
-                </TabPanel>
-            </Tabs>
+            <ProjectContainer project={project} />
         </div>
     );
 }

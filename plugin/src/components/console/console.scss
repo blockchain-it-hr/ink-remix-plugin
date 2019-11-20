@@ -3,7 +3,6 @@
 
 .console {
     display: block;
-    height: 250px;
 
     &__header {
         display: flex;
@@ -28,7 +27,8 @@
     }
 
     &__body {
-        height: inherit;
+        min-height: 250px;
+        height: 250px;
         padding: 0.8rem;
         background-color: $secondary-color;
         border-bottom-left-radius: 0.25rem;
@@ -39,10 +39,22 @@
 
         .log {
             display: block;
-            font-size: 0.8rem !important;
-            color: $primary-color;
+            font-size: 12px !important;
             overflow: visible;
             font-family: $roboto-mono;
+
+            &--info {
+                color: $primary-color;
+            }
+
+            &--success {
+                font-weight: bold;
+            }
+
+            &--error {
+                color: #ff0000;
+                font-weight: bold;
+            }
         }
     }
 }

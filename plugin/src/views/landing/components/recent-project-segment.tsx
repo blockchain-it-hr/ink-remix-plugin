@@ -7,7 +7,7 @@ const RecentProjectsSegment = ({ projects }) => (
             <i className="fa fa-list-ul mr-2" aria-hidden="true"></i>
             <span>Recent projects</span>
         </div>
-        {projects.map(project => {
+        {Object.values(projects).map((project: any) => {
             const { projectId, projectName, createdAt } = project;
             return (
                 <div key={projectId} className="group">

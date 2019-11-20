@@ -3,9 +3,9 @@
   "author": "Darko Macesic <darko@blockchain-it.hr>, Edi Sinovcic <edi@blockchain-it.hr>",
   "version": "0.0.1",
   "description": "Backend service for ink! Remix Plugin",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node app",
+    "start": "node src/app",
     "lint": "standard"
   },
   "private": true,

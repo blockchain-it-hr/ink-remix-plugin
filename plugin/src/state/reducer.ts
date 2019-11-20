@@ -6,36 +6,23 @@ export type IActions = {
     payload?: any;
 }
 
-const onCreateProject = (state: IState, action: IActions) => {
-    var projects = [...state.projects, action.payload];
-    updateProjects(projects);
-    return {
-        ...state, projects
-    }
-}
-
-const onSetLoaded = (state: IState, action: IActions) => {
-    return { 
-        ...state, 
-        isLoaded: true 
-    };
-}
-
-const onSetProjects = (state: IState, action: IActions) => {
-    return {
-        ...state,
-        projects: action.payload
-    };
-}
-
 export const reducer = (state: IState, action: IActions) => {
     switch (action.type) {
         case 'set_loaded': 
-            return onSetLoaded(state, action);
+            return { 
+                ...state, 
+                isLoaded: true 
+            };
         case 'set_projects':
-            return onSetProjects(state, action);
+            return {
+                ...state,
+                projects: action.payload
+            };
         case 'new_project':
-            return onCreateProject(state, action);
+            const projects = updateProjects(action.payload);
+            return {
+                ...state, projects
+            }
         default:
             return state;
     }

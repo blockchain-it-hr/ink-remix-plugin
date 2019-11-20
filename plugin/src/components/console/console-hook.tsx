@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Console } from './console';
+import { Console, LogType } from './console';
 
 export interface ConsoleOptions {
     maxLength: number
@@ -8,13 +8,13 @@ export interface ConsoleOptions {
 export const useConsole = (options: ConsoleOptions) => {
     const [state, setState] = useState([]);
 
-    const push = (log: string) => {
+    const push = (log: string, type: LogType = 'info') => {
         setState((state) => {
             var logs = state;
             if (logs.length >= options.maxLength) {
                 logs.shift();
             }
-            return [...logs, log]
+            return [...logs, { type, message: log }]
         });
     }
 

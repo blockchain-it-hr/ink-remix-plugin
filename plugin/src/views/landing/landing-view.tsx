@@ -8,7 +8,7 @@ const LandingView: React.FC = () => {
     return (
         <div id="wrapper">
             <CreateProjectSegment />
-            {state.projects.length > 0 && <RecentProjectsSegment projects={state.projects} />}
+            {Object.keys(state.projects).length > 0 && <RecentProjectsSegment projects={state.projects} />}
         </div>
     );
 }

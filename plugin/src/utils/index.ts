@@ -1,27 +1,41 @@
-import { IProject } from "../ink/types";
 import { remixClient } from "./remix-client";
+import { IProjectStorage, IProject } from "../types";
 
-const LS_INK_PROJECTS = 'ink:projects';
+const LS_INK_STORAGE_KEY = 'ink:storage';
 
 export const synchronizeProjects = async () => {
-    var localProjects: IProject[] = JSON.parse(localStorage.getItem(LS_INK_PROJECTS));
-    if (!localProjects) {
-        return [];
+    var storage: IProjectStorage = JSON.parse(localStorage.getItem(LS_INK_STORAGE_KEY));
+    if (!storage) {
+        return {};
     }
-    var projects: IProject[] = [];
-    for (let index = 0; index < localProjects.length; index++) {
-        const element = localProjects[index];
+    var keys = Object.keys(storage);
+    for (let index = 0; index < keys.length; index++) {
+        const key = keys[index];
+        const element = storage[key];
         try {
-            const folder = await remixClient.getFolder(`.ink/${element.projectName}`);
-            if (folder) {
-                projects.push(element);
-            }
-        } catch (err) { }
+            await remixClient.getFolder(`.ink/${element.projectName}`);
+        } catch (err) { 
+            delete storage[key];
+        }
     }
-    localStorage.setItem(LS_INK_PROJECTS, JSON.stringify(projects));
-    return projects;
+    localStorage.setItem(LS_INK_STORAGE_KEY, JSON.stringify(storage));
+    return storage;
 }
 
-export const updateProjects = async (projects: IProject[]) => {
-    localStorage.setItem(LS_INK_PROJECTS, JSON.stringify(projects));
+export const updateProjects = (project: IProject): IProjectStorage => {
+    var storage: IProjectStorage = JSON.parse(localStorage.getItem(LS_INK_STORAGE_KEY)) || {};
+    storage[project.projectId] = project;
+    localStorage.setItem(LS_INK_STORAGE_KEY, JSON.stringify(storage));
+    return storage;
+}
+
+export const base64ToUint8Array = (encoded: string): Uint8Array => {
+    var binaryString = window.atob(encoded);
+    let length = binaryString.length;
+
+    var array = new Uint8Array(length);
+    for (var i = 0; i < length; i++) {
+        array[i] = binaryString.charCodeAt(i);
+    }
+    return array;
 }

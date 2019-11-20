@@ -1,7 +1,9 @@
 import React from 'react';
 import { useConsole } from '../../../components/console';
 import inkService from '../../../ink';
-import { IMessage, IProject } from '../../../ink/types';
+import { IMessage } from '../../../ink/types';
+import { IProject } from '../../../types';
+import { remixClient } from '../../../utils/remix-client';
 
 export interface BuildFragmentProps {
     project: IProject
@@ -21,12 +23,12 @@ const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
                 break;
             }
             case 'error': {
-                console.error(message.payload);
+                consoleManager.push(message.payload, 'error');
                 disconnect();
                 break;
             }
             case 'build': {
-                consoleManager.push("Build successful");
+                consoleManager.push('Build finished', 'success');
                 disconnect();
                 break;
             }
@@ -37,13 +39,15 @@ const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
     
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        // TODO: synchronize lib.rs and Cargo.toml before building
-        inkService.buildProject(project, onMessage);
+        const projectFiles = {
+            lib:   await remixClient.getFile(`.ink/${project.projectName}/lib.rs`),
+            cargo: await remixClient.getFile(`.ink/${project.projectName}/Cargo.toml`)
+        };
+        inkService.buildProject(Object.assign(project, projectFiles), onMessage);
     }
 
     return (
-        <>
+        <div id="build-segment">
             <form onSubmit={onSubmit}>
                 <div className="group">
                     <button type="submit" className="btn btn--primary">
@@ -53,7 +57,7 @@ const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
                 </div>
             </form>
             {consoleManager.Component}
-        </>
+        </div>
     );
 }
 

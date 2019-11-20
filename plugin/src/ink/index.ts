@@ -1,6 +1,6 @@
 import { MessageHandler } from './types';
 import WebSocketManager from './web-socket-manager';
-import { IProject } from '../ink/types';
+import { IProject } from '../types';
 
 const WS_BASE_URL = 'ws://localhost:65520';
 

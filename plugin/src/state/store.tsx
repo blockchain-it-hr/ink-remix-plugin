@@ -1,15 +1,15 @@
 import React, { createContext, useContext, useReducer } from 'react';
+import { IProjectStorage } from '../types';
 import { IActions, reducer } from './reducer';
-import { IProject } from '../ink/types';
 
 export interface IState {
     isLoaded: boolean,
-    projects: IProject[]
+    projects: IProjectStorage
 }
 
 const initialState = {
     isLoaded: false,
-    projects: []
+    projects: {}
 } as IState;
 
 const StateContext = createContext<Partial<IState>>(initialState);

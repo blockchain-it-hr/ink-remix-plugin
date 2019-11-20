@@ -1,5 +1,5 @@
+import { IProject, IProjectStorage } from '../types';
 import { IActions } from './reducer';
-import { IProject } from '../ink/types';
 
 export const setLoaded = (): IActions => {
     return {
@@ -7,10 +7,10 @@ export const setLoaded = (): IActions => {
     }
 }
 
-export const setProjects = (projects: IProject[]): IActions => {
+export const setProjects = (projectStorage: IProjectStorage): IActions => {
     return {
         type: 'set_projects', 
-        payload: projects
+        payload: projectStorage
     }
 }
 
