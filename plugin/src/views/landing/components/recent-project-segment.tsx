@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const RecentProjectsFragment = ({ projects }) => (
+const RecentProjectsSegment = ({ projects }) => (
     <div className="section">
         <div className="section__title">
             <i className="fa fa-list-ul mr-2" aria-hidden="true"></i>
@@ -26,4 +26,4 @@ const RecentProjectsFragment = ({ projects }) => (
     </div>
 );
 
-export default RecentProjectsFragment;
+export default RecentProjectsSegment;

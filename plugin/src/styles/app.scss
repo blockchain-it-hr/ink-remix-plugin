@@ -2,6 +2,7 @@
 @import 'base/typography';
 @import 'base/helpers';
 @import 'base/button';
+@import 'base/tabs';
 
 html {
     line-height: 1.15;
@@ -14,6 +15,7 @@ body {
     color: $primary-color;
     background: $white-color;
     transition: all 0.1s ease-in-out;
+    min-width: 300px;
 }
 
 main {
@@ -72,5 +74,31 @@ a {
         padding-bottom: 0.5rem;
         font-weight: 700;
         border-bottom: $secondary-color 1px solid;
+    }
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    list-style: none;
+    background-color: inherit;
+    font-weight: normal;
+
+    &__item {
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 150px;
+
+        &--active {
+            font-weight: bold;
+        }
+
+        &:not(:last-child):after {
+            content: '/';
+            margin: 0 0.5rem;
+        }
     }
 }

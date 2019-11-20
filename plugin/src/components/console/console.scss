@@ -1,0 +1,47 @@
+@import '../../styles/base/colors';
+@import '../../styles/base/typography';
+
+.console {
+    display: block;
+    height: 250px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        padding: 1.2rem;
+        background-color: $primary-color;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+
+        i {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .title {
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
+
+    &__body {
+        height: inherit;
+        padding: 0.8rem;
+        background-color: $secondary-color;
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+        overflow-y: scroll;
+        resize: vertical;
+
+        .log {
+            display: block;
+            font-size: 0.8rem !important;
+            color: $primary-color;
+            overflow: hidden;
+            font-family: $roboto-mono;
+        }
+    }
+}

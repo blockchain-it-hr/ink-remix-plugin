@@ -19,11 +19,3 @@ export const synchronizeProjects = async () => {
     localStorage.setItem(LS_INK_PROJECTS, JSON.stringify(projects));
     return projects;
 }
-
-// TODO: this is used for testing currently, should be removed in the future
-export const uuid4 = () => {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
