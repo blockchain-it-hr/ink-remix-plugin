@@ -1,5 +1,5 @@
 import { IActions } from './reducer';
-import { IProject } from '../types';
+import { IProject } from '../ink/types';
 
 export const setLoaded = (): IActions => {
     return {

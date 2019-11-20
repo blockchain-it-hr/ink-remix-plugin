@@ -21,8 +21,8 @@ class CargoContractManager {
     spawnProcess(cmd, options, callback, onclose) {
         const child = spawn(cmd, options);
         if (callback) {
-            child.stdout.on('data', (data)  => callback({ type: "stdout", message: `${data}` }));
-            child.stderr.on('data', (error) => callback({ type: "stderr", message: `${error}` }));
+            child.stdout.on('data', (data)  => callback({ type: "stdout", payload: `${data}` }));
+            child.stderr.on('data', (error) => callback({ type: "stderr", payload: `${error}` }));
         }
         if (onclose) {
             child.on('close', onclose);

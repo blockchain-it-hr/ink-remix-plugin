@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { IActions, reducer } from './reducer';
-import { IProject } from '../types';
+import { IProject } from '../ink/types';
 
 export interface IState {
     isLoaded: boolean,

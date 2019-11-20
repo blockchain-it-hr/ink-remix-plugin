@@ -5,7 +5,7 @@ const app = express();
 const Logger = require('../utils/Logger');
 require('express-ws')(app);
 
-const socketErrorHandler = (err) => JSON.stringify({ type: "error", message: err.toString() });
+const socketErrorHandler = (err) => JSON.stringify({ type: "error", payload: err.toString() });
 const Router = (app, port) => {
 
     // Middleware
@@ -23,7 +23,7 @@ const Router = (app, port) => {
                     socket.send(JSON.stringify(result));
                 });
             } catch (e) {
-                return socket.send(socketErrorHandler(e));
+                socket.send(socketErrorHandler(e));
             }
         });
     });
@@ -36,7 +36,7 @@ const Router = (app, port) => {
                     socket.send(JSON.stringify(result));
                 });
             } catch (e) {
-                return socket.send(socketErrorHandler(e));
+                socket.send(socketErrorHandler(e));
             }
         });
     });

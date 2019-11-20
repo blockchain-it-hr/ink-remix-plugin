@@ -34,7 +34,7 @@ const ProjectView: React.FC = () => {
                     <Tab>Artifacts</Tab>
                 </TabList>
                 <TabPanel>
-                    <BuildSegment />
+                    <BuildSegment project={project} />
                 </TabPanel>
                 <TabPanel >
                     <ArtifactSegment />
