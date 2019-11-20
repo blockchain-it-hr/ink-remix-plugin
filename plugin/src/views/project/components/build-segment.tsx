@@ -37,6 +37,8 @@ const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
     
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        // TODO: synchronize lib.rs and Cargo.toml before building
         inkService.buildProject(project, onMessage);
     }
 
