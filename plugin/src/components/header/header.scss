@@ -1,0 +1,23 @@
+@import '../../styles/base/colors';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: $primary-color;
+
+    &__icon {
+        display: inline-block;
+        img {
+            vertical-align: middle;
+            height: 24px;
+            filter: invert(1);      
+        }
+    }
+
+    &__text {
+        color: #fff;
+        font-size: 14px;
+    }
+}

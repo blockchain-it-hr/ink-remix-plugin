@@ -1,0 +1,60 @@
+@import '../../styles/base/colors';
+@import '../../styles/base/typography';
+
+.console {
+    display: block;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        padding: 1.2rem;
+        background-color: $primary-color;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+
+        i {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .title {
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
+
+    &__body {
+        min-height: 250px;
+        height: 250px;
+        padding: 0.8rem;
+        background-color: $secondary-color;
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        overflow-y: scroll;
+        resize: vertical;
+        white-space: nowrap;
+
+        .log {
+            display: block;
+            font-size: 12px !important;
+            overflow: visible;
+            font-family: $roboto-mono;
+
+            &--info {
+                color: $primary-color;
+            }
+
+            &--success {
+                font-weight: bold;
+            }
+
+            &--error {
+                color: #ff0000;
+                font-weight: bold;
+            }
+        }
+    }
+}

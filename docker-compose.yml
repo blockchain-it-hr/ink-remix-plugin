@@ -1,0 +1,24 @@
+version: "3"
+services:
+    plugin:
+        container_name: plugin
+        build:
+            context: ./plugin
+            dockerfile: Dockerfile
+        ports:
+            - "3000:80"
+        networks:
+            - ink-remix     
+    server:
+        container_name: server
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        ports:
+            - "65520:65520"
+        networks:
+           - ink-remix
+        volumes:
+          - ./storage:/home/app/storage
+networks:
+  ink-remix:

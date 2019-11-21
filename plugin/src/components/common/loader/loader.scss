@@ -1,0 +1,46 @@
+@import '../../../styles/base/colors';
+
+@keyframes loader {
+    to { 
+        transform: rotate(360deg); 
+    }
+}
+
+@mixin create_loader($size, $color) {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    border-top-color: $accent-color !important;
+    border-bottom-color: $accent-color !important;
+    margin-top: -($size / 2);
+    margin-left: -($size / 2);
+    border: 2px solid transparent;
+    animation: loader .8s ease infinite;
+}
+
+.loader--center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loader--inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+}
+
+.loader-sm:before {
+    @include create_loader(20px, $accent-color);
+}
+
+.loader-md:before {
+    @include create_loader(40px, $accent-color);
+}
+
+.loader-lg:before {
+    @include create_loader(60px, $accent-color);
+}

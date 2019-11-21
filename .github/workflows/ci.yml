@@ -1,0 +1,27 @@
+name: Docker Create and publish images
+on: [ push, pull_request ]
+jobs:
+  build_plugin:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build plugin
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: blockchainit/ink-plugin
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        dockerfile: Dockerfile
+        workdir: ./plugin
+  build_server:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build server
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: blockchainit/ink-server
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        dockerfile: Dockerfile
+        workdir: ./server 
