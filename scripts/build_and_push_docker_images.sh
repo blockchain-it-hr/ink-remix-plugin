@@ -1,8 +1,8 @@
 #!/bin/bash
 cd ..
 #Build and push environment
-docker build --file server/Dockerfile.env --tag blockchainit/rust-env:nightly server
-docker push blockchainit/rust-env
+#docker build --file server/Dockerfile.env --tag blockchainit/rust-env:nightly server
+#docker push blockchainit/rust-env
 
 #Build and push cargo contract
 docker build --file server/Dockerfile.cargo-contract --tag blockchainit/cargo-contract:latest server
