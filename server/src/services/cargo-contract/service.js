@@ -23,7 +23,7 @@ class CargoContractService {
 
         Logger.log(`Creating "${projectName}" (projectId: ${projectId})`);
         this.cargoContractManager.create(projectName, workspaceDirectory, callback, () => {
-            const libPath   = path.join(projectPath, "src/lib.rs");
+            const libPath   = path.join(projectPath, "lib.rs");
             const cargoPath = path.join(projectPath, "Cargo.toml");
 
             const lib   = fs.readFileSync(libPath).toString();

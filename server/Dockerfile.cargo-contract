@@ -1,2 +1,2 @@
-FROM blockchainit/rust-env:nightly
+FROM blockchainit/rust-env:latest
 RUN cargo install --force --git https://github.com/paritytech/ink cargo-contract

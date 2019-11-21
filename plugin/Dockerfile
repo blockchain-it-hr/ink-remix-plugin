@@ -1,5 +1,5 @@
 # build stage
-FROM node:10 as build
+FROM node:10.15.1 as build
 LABEL stage=builder
 
 WORKDIR /app
