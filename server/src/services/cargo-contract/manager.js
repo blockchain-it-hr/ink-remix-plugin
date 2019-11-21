@@ -14,7 +14,7 @@ class CargoContractManager {
 
     build(path, callback, onclose) {
         const options = { cwd: path, shell: true };
-        const cmd = "cargo-contract contract build && cargo +nightly run -p abi-gen";
+        const cmd = "cargo contract build && cargo contract generate-metadata";
         this.spawnProcess(cmd, options, callback, onclose);
     }
 

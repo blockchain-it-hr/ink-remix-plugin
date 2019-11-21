@@ -47,7 +47,7 @@ class CargoContractService {
         const buildClosure = () => {
             Logger.log(`Building "${projectName}" (projectId: ${projectId})`);
 
-            const libPath   = path.join(projectPath, "src/lib.rs");
+            const libPath   = path.join(projectPath, "lib.rs");
             const cargoPath = path.join(projectPath, "Cargo.toml");
 
             fs.writeFileSync(libPath, lib);
@@ -55,7 +55,7 @@ class CargoContractService {
 
             this.cargoContractManager.build(projectPath, callback, () => {
                 const wasmPath = path.join(projectPath, "target", `${projectName}.wasm`);
-                const abiPath  = path.join(projectPath, "target", "abi.json");
+                const abiPath  = path.join(projectPath, "target", "metadata.json");
 
                 const wasmEncoded = fs.readFileSync(wasmPath).toString('base64');
                 const abi = fs.readFileSync(abiPath).toString();
