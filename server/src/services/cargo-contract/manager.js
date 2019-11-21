@@ -8,7 +8,7 @@ class CargoContractManager {
             fs.mkdirSync(path, { recursive: true });
         } 
         const options = { cwd: path, shell: true };
-        const cmd = `cargo-contract contract new "${name}"`;
+        const cmd = `cargo contract new "${name}"`;
         this.spawnProcess(cmd, options, callback, onclose);
     }
 

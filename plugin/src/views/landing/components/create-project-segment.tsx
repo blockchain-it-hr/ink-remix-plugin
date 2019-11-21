@@ -57,7 +57,7 @@ const CreateProjectSegment: React.FC = () => {
                     <input type="text" 
                         className="form-control" 
                         name="projectName" 
-                        placeholder="e.g. Flipper" 
+                        placeholder="Contract name" 
                         onChange={onChange} 
                         required={true} />
                 </div>
