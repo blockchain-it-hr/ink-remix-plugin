@@ -19,7 +19,6 @@ const Router = (app, port) => {
         socket.on('message', (message) => {
             try {
                 const args = JSON.parse(message);
-                console.log(message);
                 cargoContractService.create(args, (result) => {
                     socket.send(JSON.stringify(result));
                 });
@@ -33,7 +32,6 @@ const Router = (app, port) => {
         socket.on('message', (message) => {
             try {
                 const args = JSON.parse(message);
-                console.log(message);
                 cargoContractService.build(args, (result) => {
                     socket.send(JSON.stringify(result));
                 });
