@@ -1,0 +1,35 @@
+name: Docker Create and publish images
+on: [ push, pull_request ]
+jobs:
+  build_plugin:
+    name: Build plugin
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Dockerize
+    - uses: jerray/publish-docker-action@master
+      with:
+        file: Dockerfile
+        path: ./plugin
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: https://hub.docker.com/
+        repository: blockchainit/ink-plugin
+        allow_pull_request: "true"
+        auto_tag: "true"
+  build_server:
+    name: Build server
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Dockerize
+    - uses: jerray/publish-docker-action@master
+      with:
+        file: Dockerfile
+        path: ./server
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: https://hub.docker.com/
+        repository: blockchainit/ink-server
+        allow_pull_request: "true"
+        auto_tag: "true"
