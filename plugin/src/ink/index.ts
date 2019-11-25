@@ -1,8 +1,8 @@
 import { MessageHandler } from './types';
 import WebSocketManager from './web-socket-manager';
 import { IProject } from '../types';
-
-const WS_BASE_URL = 'ws://localhost:65520';
+import Logger = require('bunyan');
+import { WS_BASE_URL } from '../constants';
 
 class InkService {
 

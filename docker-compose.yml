@@ -8,7 +8,7 @@ services:
         ports:
             - "3000:80"
         networks:
-            - ink-remix     
+            - ink-remix-dev
     server:
         container_name: server
         build:
@@ -17,8 +17,8 @@ services:
         ports:
             - "65520:65520"
         networks:
-           - ink-remix
+           - ink-remix-dev
         volumes:
-          - ./storage:/home/app/storage
+          - ./storage:/usr/src/app/storage
 networks:
-  ink-remix:
+  ink-remix-dev:
