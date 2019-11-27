@@ -39,29 +39,6 @@ Congratulations you’ve managed to create and build your first ink! project. :)
 
 Feel free to change the project and update the code and build it again, create a new project or anything else.
 
-## Technical documentation
-
-### New
-
-* On frontend clicking on Create new project button opens text area where string input is expected
-
-* This triggers the creation of projectName/lib.rs and projectName/Cargo.toml and saves them into Remix file manager
-
-* Next /new endpoint is called on the backend. Project is created with path storage/projectId/projectName
-
-* ProjectId is returned from the backend and saved into local storage. This identifier is used to keep track of which server originally created the project.
-
-### Build
-
-* Content of Cargo.toml, lib.rs, projectId and projectName are send on backend.
-
-* Backend checks if a project with path storage/projectId/projectName exists, if not it creates a new one and sets lib.rs and Cargo.toml to sent values
-
-* Build is then triggered and wasm and abi is returned to the frontend
-Frontend saves wasm and abi to state
-
-### Deploy
-
 ## Possible upgrades in the future
 
 * Package whole project into tar/zip so it can be extracted and used elsewhere
@@ -74,6 +51,5 @@ If you want to propose a feature or request, please open an issue or make a pull
 * Code is located on [link](https://github.com/blockchain-it-hr/ink-remix-plugin)
 
 * Docker images are on Docker Hub:
-[ink-plugin](https://hub.docker.com/repository/docker/blockchainit/ink-plugin)
-
-[ink-server](https://hub.docker.com/repository/docker/blockchainit/ink-server)
+  * [ink-plugin](https://hub.docker.com/repository/docker/blockchainit/ink-plugin)
+  * [ink-server](https://hub.docker.com/repository/docker/blockchainit/ink-server)
