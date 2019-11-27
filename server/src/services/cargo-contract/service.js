@@ -14,7 +14,7 @@ class CargoContractService {
     create(args, callback) {
         const { projectName } = args;
         if (!projectName.match(/^[a-zA-Z0-9_]+$/g)) {
-            throw new Error('Invalid project name');
+            throw new Error("Invalid project name");
         }
 
         const projectId = uuid();
@@ -23,19 +23,23 @@ class CargoContractService {
 
         Logger.log(`Creating "${projectName}" (projectId: ${projectId})`);
         this.cargoContractManager.create(projectName, workspaceDirectory, callback, () => {
-            const libPath   = path.join(projectPath, "lib.rs");
-            const cargoPath = path.join(projectPath, "Cargo.toml");
+            try {
+                const libPath   = path.join(projectPath, "lib.rs");
+                const cargoPath = path.join(projectPath, "Cargo.toml");
+    
+                const lib   = fs.readFileSync(libPath).toString();
+                const cargo = fs.readFileSync(cargoPath).toString();
 
-            const lib   = fs.readFileSync(libPath).toString();
-            const cargo = fs.readFileSync(cargoPath).toString();
-
-            Logger.log(`Created "${projectName}" (projectId: ${projectId})`);
-            callback({ 
-                type: "project",
-                payload: {
-                    projectId, projectName, lib, cargo
-                } 
-            });
+                Logger.log(`Created "${projectName}" (projectId: ${projectId})`);
+                callback({ 
+                    type: "project",
+                    payload: {
+                        projectId, projectName, lib, cargo
+                    } 
+                });
+            } catch (e) {
+                callback({ type: "error", payload: e.toString() });
+            }
         });
     }
 
@@ -54,20 +58,24 @@ class CargoContractService {
             fs.writeFileSync(cargoPath, cargo);
 
             this.cargoContractManager.build(projectPath, callback, () => {
-                const wasmPath = path.join(projectPath, "target", `${projectName}.wasm`);
-                const abiPath  = path.join(projectPath, "target", "metadata.json");
-
-                const wasmEncoded = fs.readFileSync(wasmPath).toString('base64');
-                const abi = fs.readFileSync(abiPath).toString();
+                try {
+                    const wasmPath = path.join(projectPath, "target", `${projectName}.wasm`);
+                    const abiPath  = path.join(projectPath, "target", "metadata.json");
     
-                Logger.log(`Finished building "${projectName}" (projectId: ${projectId})`);
-                callback({ 
-                    type: "build", 
-                    payload: { 
-                        wasm: wasmEncoded, 
-                        abi 
-                    }
-                });
+                    const wasmEncoded = fs.readFileSync(wasmPath).toString('base64');
+                    const abi = fs.readFileSync(abiPath).toString();
+        
+                    Logger.log(`Finished building "${projectName}" (projectId: ${projectId})`);
+                    callback({ 
+                        type: "build", 
+                        payload: { 
+                            wasm: wasmEncoded, 
+                            abi 
+                        }
+                    });
+                } catch (e) {
+                    callback({ type: "error", payload: e.toString() });
+                }
             });
         }
 

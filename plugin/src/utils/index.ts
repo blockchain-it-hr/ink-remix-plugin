@@ -22,6 +22,10 @@ export const synchronizeProjects = async () => {
     return storage;
 }
 
+export const normalizeProjectName = (message: any): any => {
+    return message.projectName = message.projectName.toLowerCase();
+}
+
 export const updateProjects = (project: IProject): IProjectStorage => {
     var storage: IProjectStorage = JSON.parse(localStorage.getItem(LS_INK_STORAGE_KEY)) || {};
     storage[project.projectId] = project;

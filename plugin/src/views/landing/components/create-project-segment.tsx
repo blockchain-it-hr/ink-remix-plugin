@@ -31,7 +31,7 @@ const CreateProjectSegment: React.FC = () => {
                 break;
             }
             case 'error': {
-                console.log(message.payload);
+                console.error(message.payload);
                 disconnect();
                 break;
             }
