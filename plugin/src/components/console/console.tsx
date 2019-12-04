@@ -1,23 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import uuidv4 from 'uuid/v4';
+import { ConsoleConsumer } from './console-provider';
 import './console.scss';
+import { ILog } from './reducer';
 
 export interface ConsoleProps {
     logs: ILog[]
 }
 
-export type LogType = 'info' | 'success' | 'error';
-
-export interface ILog {
-    type: LogType,
-    message: string
-}
-
-export const Console: React.FC<ConsoleProps> = ({ logs }) => {
+const Console: React.FC<ConsoleProps> = ({ logs }) => {
     const bodyRef = useRef(null);
-
-    useEffect(() => {
-        bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+    
+    useEffect(() => { 
+        bodyRef.current.scrollTop = bodyRef.current.scrollHeight 
     }, [logs]);
 
     return (
@@ -33,4 +28,10 @@ export const Console: React.FC<ConsoleProps> = ({ logs }) => {
             </div>
         </div>
     );
-};
+}
+
+export default () => (
+    <ConsoleConsumer>
+        {({state}) => <Console logs={state.logs} />}
+    </ConsoleConsumer>
+);

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import { ConsoleProvider } from '../../components/console';
 import { useStateContext } from '../../state/store';
 import ProjectContainer from './project-container';
 import './project-view.scss';
+import { ProjectProvider } from './state/project-provider';
 
 const ProjectView: React.FC = () => {
     let params: any = useParams();
@@ -27,7 +29,11 @@ const ProjectView: React.FC = () => {
                     <span className="breadcrumb__item">{project.projectName}</span>
                 </div>   
             </div>
-            <ProjectContainer project={project} />
+            <ConsoleProvider>
+                <ProjectProvider>
+                    <ProjectContainer project={project} />
+                </ProjectProvider>
+            </ConsoleProvider>  
         </div>
     );
 }

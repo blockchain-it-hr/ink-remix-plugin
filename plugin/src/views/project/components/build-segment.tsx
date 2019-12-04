@@ -1,34 +1,44 @@
 import React from 'react';
-import { useConsole } from '../../../components/console';
+import { Console, onLog, useConsoleContext } from '../../../components/console';
 import inkService from '../../../ink';
 import { IMessage } from '../../../ink/types';
 import { IProject } from '../../../types';
+import { base64ToUint8Array } from '../../../utils';
 import { remixClient } from '../../../utils/remix-client';
+import { setBuildArtifacts } from '../state/actions';
+import { useProjectContext } from '../state/project-provider';
 
-export interface BuildFragmentProps {
+export interface BuildSegmentProps {
     project: IProject
 }
 
-const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
-    let consoleManager = useConsole({ maxLength: 100 });
-    
+const BuildSegment: React.FC<BuildSegmentProps> = ({ project }) => {
+    let consoleContext = useConsoleContext();
+    let projectContext = useProjectContext();
+
     const onMessage = async (message: IMessage, disconnect: () => void) => {
         switch (message.type) {
             case 'stdout': {
-                consoleManager.push(message.payload);
+                consoleContext.dispatch(onLog(message.payload));
                 break;
             }
             case 'stderr': {
-                consoleManager.push(message.payload);
+                consoleContext.dispatch(onLog(message.payload));
                 break;
             }
             case 'error': {
-                consoleManager.push(message.payload, 'error');
+                consoleContext.dispatch(onLog(message.payload, 'error'));
                 disconnect();
                 break;
             }
             case 'build': {
-                consoleManager.push('Build finished', 'success');
+                consoleContext.dispatch(onLog('Build finished', 'success'));
+                projectContext.dispatch(
+                    setBuildArtifacts({
+                        wasm: base64ToUint8Array(message.payload.wasm),
+                        abi: message.payload.abi
+                    })
+                )
                 disconnect();
                 break;
             }
@@ -56,9 +66,9 @@ const BuildFragment: React.FC<BuildFragmentProps> = ({ project }) => {
                     </button>
                 </div>
             </form>
-            {consoleManager.Component}
+            <Console />
         </div>
     );
 }
 
-export default BuildFragment;
+export default BuildSegment;

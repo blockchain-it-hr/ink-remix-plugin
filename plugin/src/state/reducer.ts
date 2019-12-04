@@ -1,5 +1,5 @@
-import { IState } from './store';
 import { updateProjects } from '../utils';
+import { IState } from './store';
 
 export type IActions = {
     type: 'set_loaded' | 'set_projects' | 'new_project';
