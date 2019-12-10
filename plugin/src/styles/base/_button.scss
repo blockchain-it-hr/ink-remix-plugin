@@ -21,7 +21,7 @@
     border-color: $accent-color;
     background-color: $accent-color;
 
-    &:hover {
+    &:not(.disabled):hover {
         color: #fff;
         border-color: darken($accent-color, 10%);
         background-color: darken($accent-color, 10%);
