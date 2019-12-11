@@ -21,7 +21,7 @@ spec:
     - staging.ink-remix.blockchain-it.hr
     secretName: staging.ink-remix-secret
   rules:
-  - host: staging.ink-remix.blockchain-it.hr  
+  #- host: staging.ink-remix.blockchain-it.hr  
   - http:
       paths:
       - path: /(.*)
