@@ -1,6 +1,7 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './index.tsx',
@@ -36,6 +37,9 @@ module.exports = {
         ]),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html'),
+        }),
+        new webpack.EnvironmentPlugin({
+            WS_BASE_URL: 'ws://localhost:65520'
         })
     ]
 }
