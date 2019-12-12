@@ -7,6 +7,7 @@ metadata:
     component: ink-ingress
   namespace: ink
   annotations:
+    kubernetes.io/ingress.global-static-ip-name: static-ip-staging
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: 'true'
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -19,6 +20,7 @@ spec:
   tls:
   - hosts:
     - staging.ink-remix.blockchain-it.hr
+    - server.staging.ink-remix.blockchain-it.hr    
     secretName: staging.ink-remix-secret
   rules:
   - host: server.staging.ink-remix.blockchain-it.hr  
@@ -27,7 +29,7 @@ spec:
       - backend:
           serviceName: server-svc
           servicePort: 80
-  - host: plugin.staging.ink-remix.blockchain-it.hr  
+  - host: staging.ink-remix.blockchain-it.hr  
     http:
       paths:
       - backend:
