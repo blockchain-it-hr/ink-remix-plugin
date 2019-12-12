@@ -9,11 +9,11 @@ cd ..
 #docker push blockchainit/cargo-contract
 
 #Build and push server
-TAG=staging
+TAG=latest
 docker build --file server/Dockerfile --tag blockchainit/ink-server:$TAG server
 docker push blockchainit/ink-server
 
 #Build and push plugin
-TAG=staging
+TAG=latest
 docker build --file plugin/Dockerfile --tag blockchainit/ink-plugin:$TAG plugin
 docker push blockchainit/ink-plugin
