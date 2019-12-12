@@ -65,11 +65,10 @@ kubectl create clusterrolebinding tiller-cluster-rule \
  --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 
 kubectl --namespace kube-system patch deploy tiller-deploy \
- -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}' 
+ -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 ```
 
 https://github.com/helm/helm/issues/3130
-
 
 ### Installing Ingress
 

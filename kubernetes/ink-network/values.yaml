@@ -1,12 +1,9 @@
 imagePullPolicy: IfNotPresent
 server:
   repository: blockchainit/ink-server
-  tag: latest
-  replicas: 1
+  tag: staging
+  replicas: 4
 plugin:
   repository: blockchainit/ink-plugin
-  tag: latest
-  replicas: 1
-tls:
-  key: test
-  cert: test
+  tag: staging
+  replicas: 2

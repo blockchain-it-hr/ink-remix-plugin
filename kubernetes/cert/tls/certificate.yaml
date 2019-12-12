@@ -12,6 +12,8 @@ spec:
   dnsNames:
   # you can add multiple domains here
   - "staging.ink-remix.blockchain-it.hr"
+  - "plugin.staging.ink-remix.blockchain-it.hr"
+  - "server.staging.ink-remix.blockchain-it.hr"
   acme:
     config:
     - dns01:
@@ -19,3 +21,5 @@ spec:
       domains:
       # you can add multiple domains here
       - "staging.ink-remix.blockchain-it.hr"
+      - "plugin.staging.ink-remix.blockchain-it.hr"
+      - "server.staging.ink-remix.blockchain-it.hr"

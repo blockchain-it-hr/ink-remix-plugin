@@ -10,7 +10,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: 'true'
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    #nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.org/websocket-services: "server-svc"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
@@ -21,10 +21,15 @@ spec:
     - staging.ink-remix.blockchain-it.hr
     secretName: staging.ink-remix-secret
   rules:
-  #- host: staging.ink-remix.blockchain-it.hr  
-  - http:
+  - host: server.staging.ink-remix.blockchain-it.hr  
+    http:
       paths:
-      - path: /(.*)
-        backend:
+      - backend:
           serviceName: server-svc
           servicePort: 80
+  - host: plugin.staging.ink-remix.blockchain-it.hr  
+    http:
+      paths:
+      - backend:
+          serviceName: plugin-svc
+          servicePort: 80   

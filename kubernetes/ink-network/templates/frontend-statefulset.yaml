@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: server
+  name: plugin
   labels:
     app: ink
     namespace: ink
-    component: server
+    component: plugin
 spec:
-  replicas: {{ .Values.server.replicas }}
+  replicas: {{ .Values.plugin.replicas }}
   selector:
     matchLabels:
       app: ink
-      component: server
+      component: plugin
   template:
     metadata:
       labels:
         app: ink
-        component: server
+        component: plugin
     spec:
       containers:
-      - name: server
-        image: {{ .Values.server.repository }}:{{ .Values.server.tag }}
+      - name: plugin
+        image: {{ .Values.plugin.repository }}:{{ .Values.plugin.tag }}
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         ports:
-        - name: server-port
+        - name: plugin-port
           protocol: TCP
-          containerPort: 65520
+          containerPort: 80
 ---
