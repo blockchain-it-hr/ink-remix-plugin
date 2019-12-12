@@ -4,10 +4,11 @@ LABEL stage=builder
 
 WORKDIR /app
 
+ARG WS_BASE_URL
+ENV WS_BASE_URL $WS_BASE_URL
+
 COPY . .
 RUN npm run build
-#EXPOSE 3000
-#CMD ["npm", "run", "serve"]
 
 # nginx stage
 FROM nginx:alpine
