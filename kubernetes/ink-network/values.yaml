@@ -1,0 +1,9 @@
+imagePullPolicy: IfNotExists #TODO: remove after test
+server:
+  repository: blockchainit/ink-server
+  tag: staging
+  replicas: 4
+plugin:
+  repository: blockchainit/ink-plugin
+  tag: staging
+  replicas: 2
