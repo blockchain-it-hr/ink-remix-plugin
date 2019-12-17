@@ -32,7 +32,7 @@ workflows:
               - develop
               - staging
               - master
-      - helm-deploy:
+      - deploy-helm:
           context: ink-remix
           # filters:
           #   branches:
