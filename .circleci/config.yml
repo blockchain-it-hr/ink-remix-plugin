@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  helm: entur/helm@0.0.13
 jobs:
   build:
     docker:
@@ -8,6 +10,16 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: ./scripts/build.sh
+  deploy-helm:
+    docker:
+      - image: entur/cci-toolbox:2.1 # This executor comes with a lof of pre-installed features; including gcloud.
+    steps:
+    - helm/install-helm-chart:
+        chart: ./kubernetes/ink-network
+        namespace: ink
+        release-name: ink
+        app-version: 0.1.13
+        version: 0.1.13
 workflows:
   version: 2
   build:
@@ -20,3 +32,11 @@ workflows:
               - develop
               - staging
               - master
+      - helm-deploy:
+          context: ink-remix
+          # filters:
+          #   branches:
+          #     only: 
+          #     - develop
+          #     - staging
+          #     - master
