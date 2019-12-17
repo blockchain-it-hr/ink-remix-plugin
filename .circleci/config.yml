@@ -18,8 +18,6 @@ jobs:
         chart: ./kubernetes/ink-network
         namespace: ink
         release-name: ink
-        app-version: 0.1.13
-        version: 0.1.13
 workflows:
   version: 2
   build:
