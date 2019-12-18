@@ -6,7 +6,7 @@ services:
             context: ./plugin
             dockerfile: Dockerfile
         ports:
-            - "3000:3000"
+            - "4000:3000"
         networks:
             - ink-network
     server:
@@ -15,10 +15,10 @@ services:
             context: ./server
             dockerfile: Dockerfile
         ports:
-            - "65520:65520"
+            - "3000:65520"
         networks:
            - ink-network
         volumes:
-          - ./storage:/usr/src/app/storage
+          - ./storage:/usr/src/app/src/storage
 networks:
   ink-network:
