@@ -4,11 +4,18 @@ import { IMessage } from "../../../ink/types";
 import { newProject } from "../../../state/actions";
 import { useDispatchContext } from "../../../state/store";
 import { remixClient } from "../../../utils/remix-client";
+import { useAlert } from "../../../components/alert";
+
+interface CreateProjectState {
+    projectName: string
+}
 
 const CreateProjectSegment: React.FC = () => {
 
     const dispatch = useDispatchContext();
-    const [state, setState] = useState({ projectName: null });
+    const [state, setState] = useState<CreateProjectState>({ projectName: null });
+
+    const { AlertComponent, setAlert, clearAlert } = useAlert();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({ projectName: e.currentTarget.value });
@@ -23,15 +30,21 @@ const CreateProjectSegment: React.FC = () => {
                 let project = message.payload;
                 project.createdAt = now.toLocaleDateString('en-US', options);
 
-                await remixClient.createFile(`.ink/${project.projectName}/lib.rs`, project.lib);
-                await remixClient.createFile(`.ink/${project.projectName}/Cargo.toml`, project.cargo);
+                try {
+                    await remixClient.createFile(`.ink/${project.projectName}/lib.rs`, project.lib);
+                    await remixClient.createFile(`.ink/${project.projectName}/Cargo.toml`, project.cargo);
+                } catch (err) {
+                    setAlert(err.toString(), 'error');
+                    disconnect();
+                    return;
+                }
                 
                 dispatch(newProject(project));
                 disconnect();
                 break;
             }
             case 'error': {
-                console.error(message.payload);
+                setAlert(message.payload, 'error');
                 disconnect();
                 break;
             }
@@ -42,8 +55,9 @@ const CreateProjectSegment: React.FC = () => {
     
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        inkService.createProject({ projectName: state.projectName }, onMessage);
-    }   
+        clearAlert();
+        inkService.createProject(state.projectName.toLowerCase(), onMessage);
+    }
 
     return (
         <div className="section">
@@ -67,6 +81,7 @@ const CreateProjectSegment: React.FC = () => {
                         <span>Create project</span>
                     </button>
                 </div>
+                {AlertComponent}
             </form>
         </div>
     );

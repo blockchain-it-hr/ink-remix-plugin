@@ -2,14 +2,12 @@ import { MessageHandler } from './types';
 import WebSocketManager from './web-socket-manager';
 import { IProject } from '../types';
 import { WS_BASE_URL } from '../constants';
-import { normalizeProjectName } from '../utils';
 
 class InkService {
 
-    createProject(message: any, handler: MessageHandler) {
+    createProject(projectName: string, handler: MessageHandler) {
         let socket = new WebSocketManager().connect(`${WS_BASE_URL}/new`, handler);
-        normalizeProjectName(message);
-        socket.onopen = () => socket.send(JSON.stringify(message));
+        socket.onopen = () => socket.send(JSON.stringify({ projectName }));
     }
 
     buildProject(message: IProject, handler: MessageHandler) {

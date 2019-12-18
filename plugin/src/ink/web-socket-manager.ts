@@ -4,9 +4,6 @@ class WebSocketManager {
 
     connect(url: string, messageHandler: MessageHandler): WebSocket {
         let socket = new WebSocket(url, 'echo-protocol');
-        socket.onerror = (error: Event) => {
-            console.error('WebSocket Error: ' + error);
-        };
         socket.onmessage = (event) => {
             try {
                 const data = JSON.parse(event.data) as IMessage;
