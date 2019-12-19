@@ -1,0 +1,26 @@
+const assert = require("assert");
+const cargoContractService = require('../src/services/cargo-contract/service');
+const chai = require("chai");
+const expect = chai.expect;
+
+describe('cargo-contract service.js', () => {
+    describe('create function', () => {
+        it('should throw error when projectName is invalid', () => {
+            expect(function() {cargoContractService.create({projectName: "!"})}).to.throw("Invalid project name");
+        });
+        it('should pass when projectName is valid', () => {
+            expect(function() {cargoContractService.create({projectName: "validName"})}).to.not.throw("Invalid project name");
+        });
+        it('should complete whole method', () => {
+            expect(function() {cargoContractService.create({projectName: "validName"})}).to.not.throw(Error);
+        });
+    });
+
+    describe('build function', () => {
+        it('should be able to build contract when correct args are passed', () => {
+            expect(function () {
+                cargoContractService.build( {"projectId":"95cc634f-9253-42cc-bd6e-39cd88a7dcf3","projectName":"debug2","lib":"#![feature(proc_macro_hygiene)]\n#![cfg_attr(not(feature = \"std\"), no_std)]\n\nuse ink_core::storage;\nuse ink_lang2 as ink;\n\n#[ink::contract(version = \"0.1.0\")]\nmod debug2 {\n    /// Defines the storage of your contract.\n    /// Add new fields to the below struct in order\n    /// to add new static storage fields to your contract.\n    #[ink(storage)]\n    struct Debug2 {\n        /// Stores a single `bool` value on the storage.\n        value: storage::Value<bool>,\n    }\n\n    impl Debug2 {\n        /// Constructor that initializes the `bool` value to the given `init_value`.\n        #[ink(constructor)]\n        fn new(&mut self, init_value: bool) {\n            self.value.set(init_value);\n        }\n\n        /// Constructor that initializes the `bool` value to `false`.\n        ///\n        /// Constructors can delegate to other constructors.\n        #[ink(constructor)]\n        fn default(&mut self) {\n            self.new(false)\n        }\n\n        /// A message that can be called on instantiated contracts.\n        /// This one flips the value of the stored `bool` from `true`\n        /// to `false` and vice versa.\n        #[ink(message)]\n        fn flip(&mut self) {\n            *self.value = !self.get();\n        }\n\n        /// Simply returns the current value of our `bool`.\n        #[ink(message)]\n        fn get(&self) -> bool {\n            *self.value\n        }\n    }\n\n    /// Unit tests in Rust are normally defined within such a `#[cfg(test)]`\n    /// module and test functions are marked with a `#[test]` attribute.\n    /// The below code is technically just normal Rust code.\n    #[cfg(test)]\n    mod tests {\n        /// Imports all the definitions from the outer scope so we can use them here.\n        use super::*;\n\n        /// We test if the default constructor does its job.\n        #[test]\n        fn default_works() {\n            // Note that even though we defined our `#[ink(constructor)]`\n            // above as `&mut self` functions that return nothing we can call\n            // them in test code as if they were normal Rust constructors\n            // that take no `self` argument but return `Self`.\n            let debug2 = Debug2::default();\n            assert_eq!(debug2.get(), false);\n        }\n\n        /// We test a simple use case of our contract.\n        #[test]\n        fn it_works() {\n            let mut debug2 = Debug2::new(false);\n            assert_eq!(debug2.get(), false);\n            debug2.flip();\n            assert_eq!(debug2.get(), true);\n        }\n    }\n}\n","cargo":"[package]\nname = \"debug2\"\nversion = \"0.1.0\"\nauthors = [\"[your_name] <[your_email]>\"]\nedition = \"2018\"\n\n[dependencies]\nink_abi = { git = \"https://github.com/paritytech/ink\", package = \"ink_abi\", default-features = false, features = [\"derive\"], optional = true }\nink_core = { git = \"https://github.com/paritytech/ink\", package = \"ink_core\", default-features = false }\nink_lang2 = { git = \"https://github.com/paritytech/ink\", package = \"ink_lang2\", default-features = false }\n\nscale = { package = \"parity-scale-codec\", version = \"1.1\", default-features = false, features = [\"derive\"] }\ntype-metadata = { git = \"https://github.com/type-metadata/type-metadata.git\", default-features = false, features = [\"derive\"], optional = true }\n\n[lib]\nname = \"debug2\"\npath = \"lib.rs\"\ncrate-type = [\n\t# Used for normal contract Wasm blobs.\n\t\"cdylib\",\n\t# Used for ABI generation.\n\t\"rlib\",\n]\n\n[features]\ndefault = [\"test-env\"]\nstd = [\n    \"ink_abi/std\",\n    \"ink_core/std\",\n    \"scale/std\",\n    \"type-metadata/std\",\n]\ntest-env = [\n    \"std\",\n    \"ink_core/test-env\",\n    \"ink_lang2/test-env\",\n]\nink-generate-abi = [\n    \"std\",\n    \"ink_abi\",\n    \"type-metadata\",\n    \"ink_core/ink-generate-abi\",\n    \"ink_lang2/ink-generate-abi\",\n]\nink-as-dependency = []\n\n[profile.release]\npanic = \"abort\"\nlto = true\nopt-level = \"z\"\noverflow-checks = true\n\n[workspace]\nmembers = [\n\t\".ink/abi_gen\"\n]\nexclude = [\n\t\".ink\"\n]\n","createdAt":"Thursday, December 19, 2019"})
+            }).to.not.throw(Error);
+        });
+    });
+});

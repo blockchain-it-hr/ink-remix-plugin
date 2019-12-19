@@ -6,7 +6,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app",
-    "lint": "standard"
+    "lint": "standard",
+    "test": "mocha"
   },
   "private": true,
   "keywords": [
