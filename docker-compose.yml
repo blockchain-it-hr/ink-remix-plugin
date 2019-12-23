@@ -1,14 +1,14 @@
 version: "3"
 services:
-    plugin:
-        container_name: plugin
-        build:
-            context: ./plugin
-            dockerfile: Dockerfile
-        ports:
-            - "4000:3000"
-        networks:
-            - ink-network
+  plugin:
+    container_name: plugin
+    build:
+      context: ./plugin
+      dockerfile: Dockerfile
+    ports:
+      - "4000:3000"
+    networks:
+      - ink-network
     server:
         container_name: server
         build:
