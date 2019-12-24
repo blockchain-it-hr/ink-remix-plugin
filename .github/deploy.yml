@@ -40,7 +40,7 @@ staging:
   payload:
     value_files: ["./config/staging.yml", "./config/_common.yml"]
     release: staging-ink
-    namespace: helm
+    namespace: ink
     track: stable
     values:
       replicaCount: 1
