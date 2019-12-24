@@ -5,8 +5,7 @@ jobs:
   build:
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: 'actions/checkout@v1'
-      name: 'Run build scripts'
+    - name: 'Run build scripts'
       run: 'CIRCLE_BRANCH=${GITHUB_REF##*/} scripts/build.sh'
     - env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
