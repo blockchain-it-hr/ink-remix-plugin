@@ -4,14 +4,7 @@ on: ['push']
 jobs:
   build:
     runs-on: 'ubuntu-latest'
-
     steps:
     - uses: 'actions/checkout@v1'
-
-    - name: 'Test'
-      run: 'echo "ok"'
-
-    # - name: 'Build'
-    #   run: 'docker build -t myapp .'
-    # - name: 'Push'
-    #   run: 'docker push myapp'
+    - name: 'Run build scripts'
+      run: './scripts/build.sh'
