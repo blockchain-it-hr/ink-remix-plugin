@@ -16,6 +16,6 @@ jobs:
         token: '${{ github.token }}'
         secrets: '${{ toJSON(secrets) }}'
         version: '${{ github.sha }}'
-        chart: 'kubernetes/ink-network/ink'
+        chart: 'kubernetes/ink-network'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
