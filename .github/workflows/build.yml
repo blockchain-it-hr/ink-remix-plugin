@@ -6,5 +6,13 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: 'actions/checkout@v1'
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: current_branch
     - name: 'Run build scripts'
-      run: 'ls -al && scripts/build.sh'
+      run: 'scripts/build.sh'
+    - env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        CIRCLE_BRANCH: ${{ current_branch }}
