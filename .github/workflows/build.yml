@@ -7,4 +7,4 @@ jobs:
     steps:
     - uses: 'actions/checkout@v1'
     - name: 'Run build scripts'
-      run: '../scripts/build.sh'
+      run: 'ls -al && scripts/build.sh'
