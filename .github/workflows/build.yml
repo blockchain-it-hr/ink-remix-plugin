@@ -9,5 +9,5 @@ jobs:
     - name: 'Run build scripts'
       run: 'CIRCLE_BRANCH=${GITHUB_REF##*/} scripts/build.sh'
       env:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
