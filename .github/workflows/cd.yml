@@ -1,20 +1,22 @@
-name: 'Deploy'     # Name of the action.
-on: ['deployment'] # Listen for deployment events.
+
+name: 'Deploy'
+on: ['deployment']
+
 jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
-    - name: 'Checkout'  # Checkout the repository code.
+    - name: 'Checkout'
       uses: 'actions/checkout@v1'
 
     - name: 'Deploy'
+      # Parameters are pulled directly from the GitHub deployment event so the
+      # configuration for the job here is very minimal.
       uses: 'deliverybot/helm@master'
       with:
         token: '${{ github.token }}'
-        chart: 'app'
         secrets: '${{ toJSON(secrets) }}'
-        namespace: production
-        release: production-myapp
-        value-files: './config/production.yml'
+        version: '${{ github.sha }}'
+        chart: 'app'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
