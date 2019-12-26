@@ -6,7 +6,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app",
-    "lint": "standard"
+    "lint": "standard",
+    "test": "mocha"
   },
   "private": true,
   "keywords": [
@@ -22,5 +23,9 @@
     "express": "~4.16.1",
     "express-ws": "~4.0.0",
     "uuid4": "^1.1.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
   }
 }
