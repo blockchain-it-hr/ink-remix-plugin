@@ -1,1 +1,1 @@
-export const WS_BASE_URL = 'ws://localhost:3000';
+export const WS_BASE_URL = process.env.WS_BASE_URL;
