@@ -1,4 +1,4 @@
-imagePullPolicy: IfNotExists #TODO: remove after test
+imagePullPolicy: IfNotPresent
 server:
   repository: blockchainit/ink-server
   tag: staging
