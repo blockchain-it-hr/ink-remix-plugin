@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const Logger = require('./utils/Logger');
 
 // env
-dotenv.config({ path: path.resolve(process.cwd(), 'backend/.env')});
+dotenv.config({ path: path.resolve(process.cwd(), 'server/.env')});
 process.env.ORIGINS = require('./origins.json')
 process.on('uncaughtException', (e) => {
     Logger.log('UncaughtException: ' + e.toString(), 'error');
