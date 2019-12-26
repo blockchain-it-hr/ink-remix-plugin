@@ -5,13 +5,13 @@ For more info on the ink! join us on [chat](https://riot.im/app/#/room/#ink:matr
 
 ## How to use
 
-Go to [Remix alpha](https://remix-alpha.ethereum.org/), or [Remix](https://remix.ethereum.org/) then to *Plugin manager*.
+Go to [Remix alpha](https://remix-alpha.ethereum.org/), or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
 
 Then in the plugin manager click on *Connect to a Local Plugin*.
 
 ![plugin-manager](static/plugin_manager.png)
 
-You can set *Plugin Name* and *Display Name* to any string.
+You can set *Plugin Name* and *Display Name* to any string.  
 Url is: 
 * <https://develop.ink-remix.blockchain-it.hr> for development
 * <https://develop.ink-remix.blockchain-it.hr> for staging  
