@@ -9,8 +9,3 @@ export interface IProject {
 export interface IProjectStorage {
     [id: string]: IProject
 }
-
-export interface IBuildArtifacts {
-    wasm: Uint8Array,
-    abi: string
-}

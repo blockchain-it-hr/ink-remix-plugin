@@ -1,0 +1,24 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: staging.ink-remix-secret
+  namespace: default
+spec:
+  secretName: staging.ink-remix-secret
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: "staging"
+  dnsNames:
+  # you can add multiple domains here
+  - '*.staging.ink-remix.blockchain-it.hr'
+  acme:
+    config:
+    - dns01:
+        digitalocean:
+          tokenSecretRef:
+            name: digitalocean-dns
+            key: access-token 
+      domains:
+      # you can add multiple domains here
+      - '*.staging.ink-remix.blockchain-it.hr'

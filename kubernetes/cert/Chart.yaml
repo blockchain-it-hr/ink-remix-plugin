@@ -1,0 +1,13 @@
+apiVersion: v1
+version: 0.1.12
+appVersion: 0.1.12
+name: cert
+description: cert
+keywords:
+  - ink
+  - cert
+sources:
+  - https://github.com/blockchain-it-hr/ink-remix-plugin
+maintainers:
+  - name: Edi Sinovcic
+    email: edi@blockchain-it.hr

@@ -4,16 +4,17 @@ LABEL stage=builder
 
 WORKDIR /app
 
+ARG WS_BASE_URL
+ENV WS_BASE_URL $WS_BASE_URL
+
 COPY . .
 RUN npm run build
-EXPOSE 3000
-CMD ["npm", "run", "serve"]
 
 # nginx stage
-#FROM nginx:alpine
-#EXPOSE 80
+FROM nginx:alpine
+EXPOSE 3000
 
-#COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
-#COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 
-#CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]

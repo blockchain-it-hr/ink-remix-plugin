@@ -1,0 +1,65 @@
+# Canary release using track=canary. Release a few pods that will be served by
+# the stable chart service.
+# canary:
+#   production_environment: true
+#   required_contexts: ["build"]
+#   environment: production
+#   description: 'Canary'
+#   payload:
+#     value_files: ["./config/production.yml", "./config/_common.yml"]
+#     release: production-ink
+#     namespace: ink
+#     track: canary
+#     values:
+#       replicaCount: 1
+
+# Deployment to a production environment is kicked off manually. This actually
+# runs two deployment, one is to remove the canary pods if it exists and the
+# other deploys to production.
+production:
+  production_environment: true
+  required_contexts: ["build"]
+  environment: production
+  description: 'Production'
+  payload:
+    value_files: ["./config/production.yml", "./config/_common.yml"]
+    # Remove the canary deployment if it exists when doing a full prod deploy.
+    remove_canary: true
+    release: production-ink
+    namespace: ink
+    track: stable
+    values:
+      replicaCount: 1
+
+# Automatic deployment to a staging environment on every push to master.
+staging:
+  auto_deploy_on: refs/heads/master
+  required_contexts: ["build"]
+  environment: staging
+  description: 'Staging'
+  payload:
+    value_files: ["./config/staging.yml", "./config/_common.yml"]
+    release: staging-ink
+    namespace: ink
+    track: stable
+    values:
+      replicaCount: 1
+
+# # Review environments can be triggered with /deploy review inside a pull
+# # request.
+# review:
+#   # Set the transient environment flag to let GitHub and deliverybot know that
+#   # this environment should be destroyed when the PR is closed.
+#   transient_environment: true
+#   production_environment: false
+#   required_contexts: ["build"]
+
+#   environment: pr${{ pr }}
+#   description: 'Review'
+#   payload:
+#     value_files: ["./config/review.yml", "./config/_common.yml"]
+#     release: review-myapp-${{ pr }}
+#     namespace: example-helm
+#     track: stable
+#     values:
+#       replicaCount: 1

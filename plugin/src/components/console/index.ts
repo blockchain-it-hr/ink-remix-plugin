@@ -1,4 +1,5 @@
-import { Console } from './console';
-import { useConsole, ConsoleOptions } from './console-hook';
+import { onLog } from './actions';
+import Console from './console';
+import { ConsoleProvider, useConsoleContext } from './console-provider';
 
-export { Console, useConsole, ConsoleOptions };
+export { Console, ConsoleProvider, useConsoleContext, onLog };

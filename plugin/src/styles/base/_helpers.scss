@@ -12,6 +12,15 @@
     color: lighten($primary-color, 50%);
 }
 
+.spin { 
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+
 .fw-400 {
     font-weight: 400 !important;
 }
