@@ -1,0 +1,13 @@
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: ink-account-clusterrolebinding
+subjects:
+  - kind: ServiceAccount
+    name: ink-account
+    namespace: ink
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: ""
