@@ -4,7 +4,7 @@ For more info on the ink! join us on [chat](https://riot.im/app/#/room/#ink:matr
 
 ## How to use
 
-Go to [Remix alpha](https://remix-alpha.ethereum.org/), or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
+Go to [Remix alpha](https://remix-alpha.ethereum.org/) or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
 
 Then in the plugin manager click on *Connect to a Local Plugin*.
 
