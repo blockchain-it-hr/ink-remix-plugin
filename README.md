@@ -5,37 +5,48 @@ For more info on the ink! join us on [chat](https://riot.im/app/#/room/#ink:matr
 
 ## How to use
 
-Go to [Remix](https://remix-alpha.ethereum.org/) then to Plugin manager.
+Go to [Remix alpha](https://remix-alpha.ethereum.org/), or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
 
-Then in the plugin manager click on Connect to a Local Plugin.
+Then in the plugin manager click on *Connect to a Local Plugin*.
 
 ![plugin-manager](static/plugin_manager.png)
 
-You can set Plugin Name and Display Name to any string.
-Url is: <https://develop.ink-remix.blockchain-it.hr>
+You can set *Plugin Name* and *Display Name* to any string.  
+Url is: 
+* <https://develop.ink-remix.blockchain-it.hr> for development
+* <https://develop.ink-remix.blockchain-it.hr> for staging  
 Click ok.
 
 ![load_plugin](static/load_plugin.png)
 
-You should have now clean loaded ink.
+You should have now clean loaded ink.  
 Accept any permissions that Remix is asking of you.
 
-Next step is to create a project.
-Input project/contract name and click on Create project.
-
 ![ink_clean](static/ink_clean.png)
+
+Next step is to create a project.  
+Input *project/contract name* and click on *Create project*.
+
+![project_created](static/project_created.png)
 
 There will be a couple of permission screens, accept them all. :)
 
 ![permissions](static/permissions.png)
 
-Next click on Testing. It will open a screen like on the next image.
+Next click on *Testing*. It will open a screen like on the next image.
 
 ![ink_remix_plugin](static/building.png)
 
-Click on the build button. As building progresses you will see logs from the backend building logs in real-time.
+Click on the build button. As building progresses you will see logs from the backend building logs in real-time.  
 
-Congratulations you’ve managed to create and build your first ink! project. :)
+Your log should look something like this after a successful build.  
+
+![finished_output](static/finished_output.png)
+
+Congratulations you’ve managed to create and build your first ink! project. :)  
+Now, you can select tab *ARTIFACTS* above output window which will give you the option to download generated *testing.wasm* and *metadata.json* files using buttons on the right side.
+
+![artifacts](static/artifacts.png)
 
 Feel free to change the project and update the code and build it again, create a new project or anything else.
 

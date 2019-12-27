@@ -1,0 +1,39 @@
+.alert {
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;
+    color: #fff;
+    border-radius: 0.25rem;
+    margin-bottom: 0 !important;
+
+    &--info {
+        background-color: #3498db;
+    }
+
+    &--warning {
+        background-color: #e67e22;
+    }
+
+    &--error {
+        background-color: #f04343;
+    }
+
+    &--success {
+        background-color: #2ecc71;
+    }
+
+    &__icon {
+        display: block;
+        flex: 0 0 auto;
+        width: auto;
+        line-height: 1;
+        margin-right: 0.5rem;
+        margin-top: 0.1rem;
+    }
+
+    &__content {
+        display: block;
+        flex: 1 1 auto;
+        font-size: 0.8rem;
+    }
+}

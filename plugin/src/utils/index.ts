@@ -1,5 +1,5 @@
+import { IProject, IProjectStorage } from "../types";
 import { remixClient } from "./remix-client";
-import { IProjectStorage, IProject } from "../types";
 
 const LS_INK_STORAGE_KEY = 'ink:storage';
 
@@ -20,10 +20,6 @@ export const synchronizeProjects = async () => {
     }
     localStorage.setItem(LS_INK_STORAGE_KEY, JSON.stringify(storage));
     return storage;
-}
-
-export const normalizeProjectName = (message: any): any => {
-    return message.projectName = message.projectName.toLowerCase();
 }
 
 export const updateProjects = (project: IProject): IProjectStorage => {
