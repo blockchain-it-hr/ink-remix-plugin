@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Loader from './components/common/loader';
+import { Loader } from './components/common/loader';
 import Header from './components/header';
-import LandingView from './views/landing';
-import ProjectView from './views/project';
 import { setLoaded, setProjects } from './state/actions';
 import { useDispatchContext, useStateContext } from './state/store';
 import './styles/app.scss';
 import { synchronizeProjects } from './utils';
 import { remixClient } from './utils/remix-client';
+import LandingView from './views/landing';
+import ProjectView from './views/project';
 
 const App: React.FC = () => {
 
