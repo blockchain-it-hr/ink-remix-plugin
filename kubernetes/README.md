@@ -1,3 +1,24 @@
+# Ink! Kubernetes charts
+
+Here are two charts for running production ready ink! network.
+
+## Ink-network
+
+In the ink-network folder to deploy a network use
+`sh deploy.sh`
+
+or follow the steps bellow.
+
+### Templates
+
+Templates consist of backend and frontend statefullsets (which represent server and plugin dockerfiles) and service which exposes ports and networking inside cluster. There are also ingress-rules for these services that are used on Ingress for network routing and as a rules for load balancer.
+
+## Cert
+
+For generating certs run generate-certs.sh if you want to generate certificate with let's encrypt on Digital Ocean DNS.
+
+Reserving static ip address can be computed using reserve-static-ip.sh.
+
 ## Flow of the process
 
 ### Prerequisites

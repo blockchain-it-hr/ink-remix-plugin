@@ -4,7 +4,9 @@ services:
     container_name: plugin
     build:
       context: ./plugin
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
+      args:
+        WS_BASE_URL: ws://localhost:65520
     ports:
       - "3000:3000"
     networks:

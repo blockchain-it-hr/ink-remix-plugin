@@ -5,6 +5,7 @@
   "description": "ink! plugin for Remix IDE",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "build-dev": "webpack --config webpack.dev.js",
     "prebuild": "npm install && rimraf dist",
     "build": "webpack --config webpack.prod.js",
     "serve": "serve -l 3000 dist/",

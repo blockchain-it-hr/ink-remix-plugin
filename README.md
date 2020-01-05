@@ -3,6 +3,20 @@
 Welcome to the ink! Remix plugin.
 For more info on the ink! join us on [chat](https://riot.im/app/#/room/#ink:matrix.parity.io)
 
+## Structure
+
+There are several folders:
+* .github -> CI configuration for Github Actions
+* config -> configuration for environment for specific stage
+* kubernetes -> kubernetes helm templates for staging and production environments
+* plugin -> frontend (Remix plugin part that is used inside Remix)
+* scripts -> folder with helpers scripts that are used with CI or are helpers for working with GKE
+* server -> backend (Remix backend part with ink! cli that is run locally or on server)
+* static -> Images for this README
+* stress_test -> folder for running scripts that benchmark system
+
+Bigger folders have their own READMEs with more detailed description.
+
 ## How to use
 
 Go to [Remix alpha](https://remix-alpha.ethereum.org/), or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
@@ -64,3 +78,11 @@ If you want to propose a feature or request, please open an issue or make a pull
 * Docker images are on Docker Hub:
   * [ink-plugin](https://hub.docker.com/repository/docker/blockchainit/ink-plugin)
   * [ink-server](https://hub.docker.com/repository/docker/blockchainit/ink-server)
+
+## How to run
+
+To run locally using docker-compose use:
+
+`docker-compose up`
+
+Feel free to change docker-compose.yml and play with it.
