@@ -4,16 +4,13 @@
 
 First run:
 `bash
-cd create && npm install && cd ../build && npm install && cd ..`
-
+npm run install
+``
 To run tests on server run:
 `bash
-with stress_test.sh`
+npm start`
 
 ## Structure of the folder
 
-There are two folders:
-* create
-* build
-
-with ws-client-build/create.js that start connection to server and listen on responses and in the end print how much time was needed. 
+Src has a source for both testing create and build processes.
+Currently only default examples are tested but we are adding more tests with different payloads and multithreading support so multiple create and build processes can be spawned in parallel.

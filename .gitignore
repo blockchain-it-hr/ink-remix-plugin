@@ -3,3 +3,4 @@ __snapshots__/
 .vscode
 node_modules
 **/storage
+**/ids.file
