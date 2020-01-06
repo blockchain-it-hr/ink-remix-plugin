@@ -5,7 +5,8 @@
 First run:
 `bash
 npm run install
-``
+`
+
 To run tests on server run:
 `bash
 npm start`
