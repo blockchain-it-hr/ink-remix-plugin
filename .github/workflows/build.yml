@@ -21,4 +21,4 @@ jobs:
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: gh-pages
-          charts-folder: kubernetes/ink-network
+          charts-folder: kubernetes/ink-network/
