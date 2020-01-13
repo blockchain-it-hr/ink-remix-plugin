@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   ink:
   - apiVersion: v1
-    appVersion: 0.1.13
-    created: "2020-01-13T14:44:29.693598156Z"
+    appVersion: 0.1.14
+    created: "2020-01-13T14:51:11.21786844Z"
     description: ink
-    digest: b00deda5b46981894f6f2bc84eedff5f523e0e69b86b23cb903d03fbe99b1438
+    digest: 8c1cb00bbbe2e151aab74fa82d718516b2b90e2438771e4d09e63a8d8566ba1e
     keywords:
     - ink
     maintainers:
@@ -15,6 +15,6 @@ entries:
     sources:
     - https://github.com/blockchain-it-hr/ink-remix-plugin
     urls:
-    - https://github.com/blockchain-it-hr/ink-remix-plugin/releases/download/ink-0.1.13/ink-0.1.13.tgz
-    version: 0.1.13
-generated: "2020-01-13T14:44:29.536393989Z"
+    - https://github.com/blockchain-it-hr/ink-remix-plugin/releases/download/ink-0.1.14/ink-0.1.14.tgz
+    version: 0.1.14
+generated: "2020-01-13T14:51:11.053789763Z"
