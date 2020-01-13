@@ -4,3 +4,4 @@ __snapshots__/
 node_modules
 **/storage
 **/ids.file
+**/spinnaker-service-account.json
