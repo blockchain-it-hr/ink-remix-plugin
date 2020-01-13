@@ -44,7 +44,7 @@ const Router = (app, port) => {
     app.ws('/deploy', async () => {
         // TODO: Implement deploy logic
     });
-}
+};
 
 const router = Router(app, process.env.SERVER_PORT || 65520);
 module.exports = router;
