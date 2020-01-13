@@ -15,6 +15,7 @@ jobs:
   publish-helm:
       runs-on: 'ubuntu-latest'
       steps:
+      - uses: 'actions/checkout@v1'
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0-alpha.2
         env:
