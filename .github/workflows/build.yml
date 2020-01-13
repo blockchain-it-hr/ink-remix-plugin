@@ -27,3 +27,4 @@ jobs:
           CR_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
         with:
           charts_dir: "kubernetes/ink/"
+          charts_repo_url: "https://api.github.com/repos/blockchain-it-hr/ink-remix-plugin/charts"
