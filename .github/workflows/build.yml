@@ -13,4 +13,3 @@ jobs:
         DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
     - name: 'Trigger deployment'
       run: scripts/deploy.sh
-

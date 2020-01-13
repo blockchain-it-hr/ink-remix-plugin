@@ -2,8 +2,7 @@
 # https://cloud.google.com/solutions/managing-and-deploying-apps-to-multiple-gke-clusters-using-spinnaker
 # Go through this tutorial above, here are copied all the commands and naming of some stuff have been changed but the flow is the same
 PROJECT_NAME=ink-server
-
-gcloud config set project  $PROJECT_NAME
+gcloud config set project $PROJECT_NAME
 
 # In cloud shell
 mkdir $HOME/spinnaker
@@ -11,7 +10,7 @@ cd $HOME/spinnaker
 WORKDIR=$(pwd)
 
 # Install helm
-HELM_VERSION=v2.13.0
+HELM_VERSION=v2.14.1
 HELM_PATH="$WORKDIR"/helm-"$HELM_VERSION"
 wget https://storage.googleapis.com/kubernetes-helm/helm-"$HELM_VERSION"-linux-amd64.tar.gz
 tar -xvzf helm-"$HELM_VERSION"-linux-amd64.tar.gz
@@ -25,7 +24,7 @@ chmod +x spin
 
 # Create clusters
 gcloud container clusters create spinnaker --zone us-east4-a \
-    --num-nodes 1 --machine-type n1-standard-2 --async
+    --num-nodes 2 --machine-type n1-standard-2 --async
 gcloud container clusters create usa --zone us-east4-a \
     --num-nodes 1 --machine-type n1-standard-2 --async
 gcloud container clusters create europe --zone europe-west6-a \
@@ -65,6 +64,8 @@ SPINNAKER_SA_EMAIL=$(gcloud iam service-accounts list \
     --filter="displayName:spinnaker-service-account" \
     --format='value(email)')
 
+sleep 5
+
 # Bind the storage.admin and storage.objectAdmin roles to the Spinnaker service account
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --role roles/storage.admin \
@@ -102,14 +103,14 @@ ${HELM_PATH}/helm version
 # Client: &version.Version{SemVer:"v2.13.0", GitCommit:"79d07943b03aea2b76c12644b4b54733bc5958d6", GitTreeState:"clean"}
 # Server: &version.Version{SemVer:"v2.13.0", GitCommit:"79d07943b03aea2b76c12644b4b54733bc5958d6", GitTreeState:"clean"}
 
+# If you get could not find a ready tiller pod please wait until tiller is ready
+ 
 # Configuring Spinnaker
 export PROJECT_ID=$(gcloud info --format='value(config.project)')
 export BUCKET=${PROJECT_ID}-spinnaker-config
-gsutil mb -c regional -l us-east4 gs://${BUCKET}
-
+gsutil mb -c regional -l us-west2 gs://${BUCKET}
 
 # Spinmaker config
-
 export SA_JSON=$(cat $WORKDIR/spinnaker-service-account.json)
 export PROJECT_ID=$(gcloud info --format='value(config.project)')
 export BUCKET=${PROJECT_ID}-spinnaker-config
@@ -126,7 +127,14 @@ dockerRegistries:
   address: https://gcr.io
   username: _json_key
   password: '$SA_JSON'
-  email: edi.sinovcic@gmail.com
+  email: edi@blockchain-it.hr
+- name: dockerhub
+  address: index.docker.io
+  username: ijsfd
+  password: mandrilo
+  repositories:
+    - blockchainit/ink-server
+    - blockchainit/ink-plugin
 
 # Disable minio as the default storage backend
 minio:
@@ -156,7 +164,7 @@ halyard:
 EOF
 
 
-# Deploy chart with spinnamer
+# Deploy chart with spinnaker
 
 ${HELM_PATH}/helm install -n spin stable/spinnaker -f spinnaker-config.yaml --timeout 600 \
 --version 1.8.1 --wait
@@ -221,8 +229,8 @@ kubectl --context usa apply -f spinnaker-sa.yaml
 
 EUROPE_CLUSTER=gke_${PROJECT_ID}_europe-west6-a_europe
 USA_CLUSTER=gke_${PROJECT_ID}_us-east4-a_usa
-EUROPE_USER=west-spinnaker-service-account
-USA_USER=east-spinnaker-service-account
+EUROPE_USER=europe-spinnaker-service-account
+USA_USER=usa-spinnaker-service-account
 
 EUROPE_TOKEN=$(kubectl --context europe get secret \
     $(kubectl get serviceaccount spinnaker-service-account \
@@ -278,7 +286,56 @@ ${HELM_PATH}/helm upgrade spin stable/spinnaker -f spinnaker-config.yaml --timeo
 # See that pods are running
 kubectl get pods
 
-
 export DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" \
-    -o jsonpath="{.items[0].metadata.name}")
+-o jsonpath="{.items[0].metadata.name}")
 kubectl port-forward --namespace default $DECK_POD 8080:9000 >> /dev/null &
+
+export GATE_POD=$(kubectl get pods --namespace default -l "cluster=spin-gate" -o jsonpath="{.items[0].metadata.name}")
+kubectl port-forward --namespace default $GATE_POD 8084:8084 >> /dev/null &
+
+# Delete resources
+
+gcloud container clusters delete spinnaker --zone us-east4-a --quiet --async
+gcloud container clusters delete europe --zone europe-west6-a --quiet --async
+gcloud container clusters delete usa --zone us-east4-a --quiet --async
+
+kubectx -d spinnaker
+kubectx -d europe
+kubectx -d usa
+
+SPINNAKER_SA_EMAIL=$(gcloud iam servicjob.batch/spin-spinnaker-cleanup-using-hale-accounts list \
+    --filter="displayName:spinnaker-service-account" \
+    --format='value(email)')
+gcloud iam service-accounts delete $SPINNAKER_SA_EMAIL --quiet
+
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+gcloud pubsub topics delete projects/${PROJECT_ID}/topics/gcr
+gcloud pubsub subscriptions delete gcr-triggers
+
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+export BUCKET=${PROJECT_ID}-spinnaker-config
+gsutil -m rm -r gs://${BUCKET}
+gsutil -m rm -r gs://$PROJECT_ID-kubernetes-manifests
+
+cd ~
+rm -rf $WORKDIR
+
+## Base app example
+cd $WORKDIR
+./spin application save --application-name sample \
+    --owner-email edi@blockchain-it.hr \
+    --cloud-providers kubernetes \
+    --gate-endpoint http://localhost:8080/gate
+
+
+cd $WORKDIR/sample-app
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+export GKE_ONE=europe
+export REGION_ONE=Europe
+export GKE_TWO=usa
+export REGION_TWO=Usa
+sed -e s/GKE_ONE/$GKE_ONE/g -e s/REGION_ONE/$REGION_ONE/g -e s/GKE_TWO/$GKE_TWO/g -e s/REGION_TWO/$REGION_TWO/g -e s/PROJECT_ID/$PROJECT_ID/g $WORKDIR/sample-app/spinnaker/pipeline-deploy-multicluster.json > $WORKDIR/sample-app/multicluster-pipeline-deploy.json
+cd $WORKDIR
+./spin pipeline save --gate-endpoint http://localhost:8080/gate -f $WORKDIR/sample-app/multicluster-pipeline-deploy.json
+
+

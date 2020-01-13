@@ -4,3 +4,4 @@ __snapshots__/
 node_modules
 **/storage
 **/ids.file
+kubernetes/spinnaker-service-account.json

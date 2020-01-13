@@ -1,0 +1,68 @@
+{
+    "keepWaitingPipelines": false,
+    "lastModifiedBy": "anonymous",
+    "limitConcurrent": true,
+    "notifications": [
+      {
+        "address": "edi@blockchain-it.hr",
+        "cc": "devops@blockchain-it.hr",
+        "level": "pipeline",
+        "type": "email",
+        "when": [
+          "pipeline.starting",
+          "pipeline.complete",
+          "pipeline.failed"
+        ]
+      }
+    ],
+    "stages": [
+      {
+        "expectedArtifacts": [
+          {
+            "defaultArtifact": {},
+            "id": "6b37872b-891d-4313-a3db-ffa8ddf89bc7",
+            "matchArtifact": {
+              "kind": "base64",
+              "name": "ink-dev",
+              "type": "embedded/base64"
+            },
+            "useDefaultArtifact": false
+          }
+        ],
+        "inputArtifacts": [
+          {
+            "account": "",
+            "id": ""
+          }
+        ],
+        "isNew": true,
+        "name": "Bake (Manifest)",
+        "namespace": "prod",
+        "outputName": "ink-dev",
+        "overrides": {},
+        "refId": "1",
+        "requisiteStageRefIds": [],
+        "templateRenderer": "HELM2",
+        "type": "bakeManifest"
+      }
+    ],
+    "triggers": [
+      {
+        "account": "dockerhub",
+        "enabled": true,
+        "organization": "blockchainit",
+        "registry": "index.docker.io",
+        "repository": "blockchainit/ink-plugin",
+        "type": "docker"
+      },
+      {
+        "account": "dockerhub",
+        "enabled": true,
+        "organization": "blockchainit",
+        "registry": "index.docker.io",
+        "repository": "blockchainit/ink-server",
+        "type": "docker"
+      }
+    ],
+    "updateTs": "1578916379417"
+  }
