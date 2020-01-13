@@ -1,6 +1,5 @@
 name: 'Push'
 on: ['push']
-
 jobs:
   build:
     runs-on: 'ubuntu-latest'
@@ -21,4 +20,4 @@ jobs:
         with:
           access-token: ${{ secrets.ACCESS_TOKEN }}
           deploy-branch: develop
-          charts-folder: kubernetes/ink-network/
+          charts-folder: kubernetes/ink/
