@@ -101,3 +101,9 @@ To run locally using docker-compose use:
 `docker-compose up`
 
 Feel free to change docker-compose.yml and play with it.
+
+## Older releases
+
+All the releases can be found on [link](https://github.com/blockchain-it-hr/ink-remix-plugin/releases).
+
+Happy Inking! ;)
