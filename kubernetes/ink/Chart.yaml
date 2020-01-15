@@ -1,7 +1,7 @@
 apiVersion: v1
 type: application
-version: 0.1.13
-appVersion: 0.1.13
+version: 0.1.14
+appVersion: 0.1.14
 name: ink
 description: ink
 keywords:
