@@ -15,16 +15,7 @@ jobs:
   publish-helm:
       runs-on: 'ubuntu-latest'
       steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"     
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.0.0-alpha.2
-        env:
-          CR_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+      - uses: actions/checkout@v1
+      - uses: J12934/helm-gh-pages-action@master
         with:
-          charts_dir: "kubernetes/ink/"
-          charts_repo_url: "https://api.github.com/repos/blockchain-it-hr/ink-remix-plugin/charts"
+          access-token: ${{ secrets.ACCESS_TOKEN }}
