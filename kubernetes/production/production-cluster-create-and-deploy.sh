@@ -1,6 +1,23 @@
 # Description here
 # https://cloud.google.com/solutions/managing-and-deploying-apps-to-multiple-gke-clusters-using-spinnaker
 # Go through this tutorial above, here are copied all the commands and naming of some stuff have been changed but the flow is the same
+
+##Env stuff
+PROJECT_NAME=ink-server
+gcloud config set project $PROJECT_NAME
+cd $HOME/spinnaker
+WORKDIR=$(pwd)
+HELM_VERSION=v2.14.1
+HELM_PATH="$WORKDIR"/helm-"$HELM_VERSION"
+export PATH=$PATH:$WORKDIR/kubectx
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+export BUCKET=${PROJECT_ID}-spinnaker-config
+export SA_JSON=$(cat $WORKDIR/spinnaker-service-account.json)
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+export BUCKET=${PROJECT_ID}-spinnaker-config
+####
+
 PROJECT_NAME=ink-server
 gcloud config set project $PROJECT_NAME
 
@@ -161,6 +178,11 @@ halyard:
           --json-path /opt/gcs/key.json \
           --project $PROJECT_ID \
           --message-format GCR
+      enable_github.sh: |-
+        ARTIFACT_ACCOUNT_NAME=my-github-artifact-account
+        \$HAL_COMMAND config features edit --artifacts true  
+        \$HAL_COMMAND config artifact github enable
+        \$HAL_COMMAND config artifact github account add $ARTIFACT_ACCOUNT_NAME --token "b1b1995a5efe94f7ae1650d79e714d7e25ef764f"
 EOF
 
 
@@ -168,6 +190,10 @@ EOF
 
 ${HELM_PATH}/helm install -n spin stable/spinnaker -f spinnaker-config.yaml --timeout 600 \
 --version 1.8.1 --wait
+
+## Enable github
+
+kubectl exec -it spin-spinnaker-halyard-0 bash
 
 # This will take couple of minutes
 
