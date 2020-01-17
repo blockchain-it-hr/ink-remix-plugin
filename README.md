@@ -2,6 +2,12 @@
 Welcome to the ink! Remix plugin.
 For more info on the ink! join us on [chat](https://riot.im/app/#/room/#ink:matrix.parity.io)
 
+## Support
+
+<p align="center">
+  <img  src="static/web3_badge.png">
+</p>
+
 ## Structure
 
 There are several folders:
@@ -101,10 +107,3 @@ To run locally using docker-compose use:
 `docker-compose up`
 
 Feel free to change docker-compose.yml and play with it.
-
-
-## Support
-
-<p align="center">
-  <img  src="static/web3_badge.png">
-</p>
