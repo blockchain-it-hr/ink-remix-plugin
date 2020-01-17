@@ -103,6 +103,7 @@ To run locally using docker-compose use:
 Feel free to change docker-compose.yml and play with it.
 
 
+## Support
 
 <p align="center">
   <img  src="static/web3_badge.png">
