@@ -101,3 +101,9 @@ To run locally using docker-compose use:
 `docker-compose up`
 
 Feel free to change docker-compose.yml and play with it.
+
+
+
+<p align="center">
+  <img  src="static/web3_badge.png">
+</p>
