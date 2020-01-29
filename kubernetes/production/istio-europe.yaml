@@ -1,0 +1,46 @@
+apiVersion: install.istio.io/v1alpah2
+kind: IstioControlPlane
+metadata:
+  name: default
+spec:
+  unvalidatedValues:
+    global:
+      meshID: inkmesh
+  values:
+    gateways:
+      istio-ingressgateway:
+        env:
+          ISTIO_MESH_NETWORK: europe
+        sds:
+          enabled: true
+    global:
+      controlPlaneSecurityEnabled: true
+      k8sIngress:
+        enableHttps: false
+        enabled: true
+        gatewayName: ingressgateway
+      meshNetworks:
+        networks:
+          europe:
+            endpoints:
+            - fromRegistry: Kubernetes
+          usa:
+            endpoints:
+            - fromRegistry: d492b50b-3d28-11ea-91e8-42010a9600cf
+      mtls:
+        enabled: true
+      multiCluster:
+        clusterName: cb198b4f-3d28-11ea-9bdf-42010aac0017
+      network: europe
+    pilot:
+      meshNetworks:
+        networks:
+          europe:
+            endpoints:
+            - fromRegistry: Kubernetes
+          usa:
+            endpoints:
+            - fromRegistry: d492b50b-3d28-11ea-91e8-42010a9600cf
+    security:
+      selfSigned: true
+

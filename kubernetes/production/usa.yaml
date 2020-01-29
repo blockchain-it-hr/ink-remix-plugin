@@ -1,0 +1,26 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURDekNDQWZPZ0F3SUJBZ0lRRmR3S1hhaFk1OGRqT1BNOUppcE1sekFOQmdrcWhraUc5dzBCQVFzRkFEQXYKTVMwd0t3WURWUVFERXlRME5HWmxaR00xWmkweU9EUXdMVFF4WlRrdE9XVTVNaTB4WVRobU1UWXdZVFU1TkRBdwpIaGNOTWpBd01USXlNVFF3TkRFNVdoY05NalV3TVRJd01UVXdOREU1V2pBdk1TMHdLd1lEVlFRREV5UTBOR1psClpHTTFaaTB5T0RRd0xUUXhaVGt0T1dVNU1pMHhZVGhtTVRZd1lUVTVOREF3Z2dFaU1BMEdDU3FHU0liM0RRRUIKQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUN5cGRRdGYzMElURXVKSFYyRjNJK28rcWVkOCt6SkVjQ1g2ZXB2YkdLUgpNM1VrZjZkQjRuUjdmYkVOT0dwM2QyNU14Sm5CaG1DQkg0S1VDdkgxTzAxSEI5elJzK2VBTUJmQk5zUEw4ejF6CittaHpzMDJ5WTR6bUc0bVd1ZTVzNzJDaVAzR1BEZ0ZLY1VNamJHekZyN2dUcmNCdm14Rzd0dVZlV09sQ05JU2wKcU1mdzVyeVh3QWczNTJxc3FFcWJtN2lyU3dzencxU2NhR3FNVkc0blpDWWtpN2FDS0Rpc0ZhNkdzSE83L3F5SAo3UkUwbjhCV0VyZ21iRGxBLzJ2dU5kb1RtU1lmL2owSGR6SVRYdnZUSXhqeU5NRmRMTmJCRXR2TnNNNHFhUGQrCmFZa3RQU3FPVTdwbWxOWG9ZV0NjSC91YkMwSTVFS1dFSHZ2dlRQaFJ2NU5oQWdNQkFBR2pJekFoTUE0R0ExVWQKRHdFQi93UUVBd0lDQkRBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFBWQpubEVLT3RRaExJaWo4alBET21lbEl3WVpobWRkb2lLZlVzaVhkT0FEMTZ1aTc2Y0lwSEpselA3UWFYYzVFc3haCng5TStjYTlpTEJZazByTnVvNmFqRkNTMllyZU1rSE1yZ0pueWNCbFdZL2VRZFRvSjdjWmxLdXZsNE9kNDNmU1IKUTJoN0ZVcDhCT2xpK2svdjUzbmhCaHF5RjZOYmF6blMwd1VidXNKREN5RElPd012RDFLMURod3dKa2JJRTJYdgpwQmNka01UeW5OOGZuUFl3ZDVpTStpellpNFhOcWdhcE5PWWF1OUd5ei9sbGQ0SndTejRLaGhOWi95RGpjNUMyCmRZek95Nml6YyswZE54V2txWlJQa1RMQkJlSGNOQWZYckFNdE00cVhuVFZMYmFGVkxFSGl3bHBzdUZaZmdSOWwKM055UEVRdndVN0U0aFp5ZStSSVkKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://35.230.189.210
+  name: gke_ink-server_us-east4-a_usa
+contexts:
+- context:
+    cluster: gke_ink-server_us-east4-a_usa
+    user: gke_ink-server_us-east4-a_usa
+  name: usa
+current-context: usa
+kind: Config
+preferences: {}
+users:
+- name: gke_ink-server_us-east4-a_usa
+  user:
+    auth-provider:
+      config:
+        access-token: ya29.Ima7BwBXZ5A3OzBFp7xPW7z0P0hdJNReDvsW5MIBphvqSZoVrdo0k7rPzd55pmnUfdADJvy8ALH_OBgxwJmNtt4TFMc56fBGP6wCPveFpHDYv5SYl9OdkTEHF8fC-box1Jy4PkfgCXw
+        cmd-args: config config-helper --format=json
+        cmd-path: /home/user/Downloads/google-cloud-sdk-276.0.0-linux-x86_64/google-cloud-sdk/bin/gcloud
+        expiry: "2020-01-29T12:29:50Z"
+        expiry-key: '{.credential.token_expiry}'
+        token-key: '{.credential.access_token}'
+      name: gcp

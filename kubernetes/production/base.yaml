@@ -1,0 +1,17 @@
+apiVersion: install.istio.io/v1alpha2
+kind: IstioControlPlane
+spec:
+  values:
+    gateways:
+      istio-ingressgateway:
+        sds:
+          enabled: true
+    security:
+      selfSigned: true
+    global:
+      mtls:
+        enabled: true
+      k8sIngress:
+        enabled: true
+        enableHttps: false
+        gatewayName: ingressgateway

@@ -3,15 +3,11 @@ kind: Service
 metadata:
   name: plugin-svc
   labels:
-    namespace: ink
     app: ink
-    component: plugin
 spec:
   type: ClusterIP
   selector:
     app: ink
-    component: plugin
-  type: 
   ports:
   - name: plugin-port
     protocol: TCP

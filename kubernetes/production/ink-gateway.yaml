@@ -1,0 +1,46 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: ink-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ink
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ink-gateway
+  http:
+  - name: server-route
+    match:
+    - uri:
+        prefix: /build
+    route:
+    - destination:
+        host: server.ink.svc.cluster.local
+        port:
+          number: 65520
+  - name: plugin-route
+    match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: plugin.ink.svc.cluster.local
+        port:
+          number: 80
+
+#plugin.ink.svc.cluster.local
+#server.ink.svc.cluster.local
