@@ -38,6 +38,7 @@ class CargoContractService {
                     }
                 });
             } catch (e) {
+                Logger.log(`Error while creating "${projectName}": ${e.toString()}`);
                 callback({type: "error", payload: e.toString()});
             }
         });
@@ -59,7 +60,7 @@ class CargoContractService {
 
             this.cargoContractManager.build(projectPath, callback, () => {
                 try {
-                    const wasmPath = path.join(projectPath, "target", `${projectName}.wasm`);
+                    const wasmPath = path.join(projectPath, "target", "template.wasm");
                     const abiPath = path.join(projectPath, "target", "metadata.json");
 
                     const wasmEncoded = fs.readFileSync(wasmPath).toString('base64');
@@ -74,6 +75,7 @@ class CargoContractService {
                         }
                     });
                 } catch (e) {
+                    Logger.log(`Failed building "${projectName}": ${e.toString()}`);
                     callback({type: "error", payload: e.toString()});
                 }
             });

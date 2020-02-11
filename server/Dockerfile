@@ -1,4 +1,4 @@
-FROM blockchainit/cargo-contract:latest
+FROM dark64/cargo-contract-env:latest
 
 ARG WORKSPACE_DIR=/usr/src/app
 WORKDIR ${WORKSPACE_DIR}
