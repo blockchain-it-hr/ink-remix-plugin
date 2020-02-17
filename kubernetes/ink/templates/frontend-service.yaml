@@ -4,12 +4,14 @@ metadata:
   name: plugin-svc
   labels:
     app: ink
+    component: plugin-svc
 spec:
   type: ClusterIP
   selector:
     app: ink
+    component: plugin
   ports:
   - name: plugin-port
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 3000

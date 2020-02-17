@@ -24,13 +24,19 @@ spec:
           europe:
             endpoints:
             - fromRegistry: Kubernetes
+            gateways:
+            - address: 34.65.71.3
+              port: 443
           usa:
             endpoints:
-            - fromRegistry: d492b50b-3d28-11ea-91e8-42010a9600cf
+            - fromRegistry: 658e3341-50e5-11ea-af86-42010a9600bb
+            gateways:
+            - address: 35.245.34.52
+              port: 443
       mtls:
         enabled: true
       multiCluster:
-        clusterName: cb198b4f-3d28-11ea-9bdf-42010aac0017
+        clusterName: 7a8b1d83-50e5-11ea-a5ce-42010aac0011
       network: europe
     pilot:
       meshNetworks:
@@ -38,9 +44,15 @@ spec:
           europe:
             endpoints:
             - fromRegistry: Kubernetes
+            gateways:
+            - address: 34.65.71.3
+              port: 443
           usa:
             endpoints:
-            - fromRegistry: d492b50b-3d28-11ea-91e8-42010a9600cf
+            - fromRegistry: 658e3341-50e5-11ea-af86-42010a9600bb
+            gateways:
+            - address: 35.245.34.52
+              port: 443
     security:
-      selfSigned: true
+      selfSigned: false
 

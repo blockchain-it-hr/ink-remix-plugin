@@ -7,7 +7,7 @@ spec:
         sds:
           enabled: true
     security:
-      selfSigned: true
+      selfSigned: false
     global:
       mtls:
         enabled: true
