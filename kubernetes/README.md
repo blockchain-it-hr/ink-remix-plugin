@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ink! Kubernetes charts
 
 Here are two charts for running production ready ink! network.
@@ -19,6 +20,8 @@ For generating certs run generate-certs.sh if you want to generate certificate w
 
 Reserving static ip address can be computed using reserve-static-ip.sh.
 
+=======
+>>>>>>> 46b61133154c25cf57d1bac2097fb7a182ece1c2
 ## Flow of the process
 
 ### Prerequisites

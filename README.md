@@ -56,6 +56,11 @@ Input *project/contract name* and click on *Create project*.
   <img  src="static/project_created.png">
 </p>
 
+Next step is to create a project.  
+Input *project/contract name* and click on *Create project*.
+
+![project_created](static/project_created.png)
+
 There will be a couple of permission screens, accept them all. :)
 
 <p align="center">
