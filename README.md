@@ -1,15 +1,36 @@
-# ink!-remix-plugin
 
 Welcome to the ink! Remix plugin.
 For more info on the ink! join us on [chat](https://riot.im/app/#/room/#ink:matrix.parity.io)
 
+## Support
+
+<p align="center">
+  <img  src="static/web3_badge.png">
+</p>
+
+## Structure
+
+There are several folders:
+* .github -> CI configuration for Github Actions
+* config -> configuration for environment for specific stage
+* kubernetes -> kubernetes helm templates for staging and production environments
+* plugin -> frontend (Remix plugin part that is used inside Remix)
+* scripts -> folder with helpers scripts that are used with CI or are helpers for working with GKE
+* server -> backend (Remix backend part with ink! cli that is run locally or on server)
+* static -> Images for this README
+* stress_test -> folder for running scripts that benchmark system
+
+Bigger folders have their own READMEs with more detailed description.
+
 ## How to use
 
-Go to [Remix alpha](https://remix-alpha.ethereum.org/), or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
+Go to [Remix alpha](https://remix-alpha.ethereum.org/) or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
 
 Then in the plugin manager click on *Connect to a Local Plugin*.
 
-![plugin-manager](static/plugin_manager.png)
+<p align="center">
+  <img  src="static/plugin_manager.png">
+</p>
 
 You can set *Plugin Name* and *Display Name* to any string.  
 Url is: 
@@ -17,12 +38,23 @@ Url is:
 * <https://develop.ink-remix.blockchain-it.hr> for staging  
 Click ok.
 
-![load_plugin](static/load_plugin.png)
+<p align="center">
+  <img  src="static/load_plugin.png">
+</p>
 
 You should have now clean loaded ink.  
 Accept any permissions that Remix is asking of you.
 
-![ink_clean](static/ink_clean.png)
+<p align="center">
+  <img  src="static/ink_clean.png">
+</p>
+
+Next step is to create a project.  
+Input *project/contract name* and click on *Create project*.
+
+<p align="center">
+  <img  src="static/project_created.png">
+</p>
 
 Next step is to create a project.  
 Input *project/contract name* and click on *Create project*.
@@ -31,22 +63,30 @@ Input *project/contract name* and click on *Create project*.
 
 There will be a couple of permission screens, accept them all. :)
 
-![permissions](static/permissions.png)
+<p align="center">
+  <img  src="static/permissions.png">
+</p>
 
 Next click on *Testing*. It will open a screen like on the next image.
 
-![ink_remix_plugin](static/building.png)
+<p align="center">
+  <img  src="static/building.png">
+</p>
 
 Click on the build button. As building progresses you will see logs from the backend building logs in real-time.  
 
 Your log should look something like this after a successful build.  
 
-![finished_output](static/finished_output.png)
+<p align="center">
+  <img  src="static/finished_output.png">
+</p>
 
 Congratulations you’ve managed to create and build your first ink! project. :)  
 Now, you can select tab *ARTIFACTS* above output window which will give you the option to download generated *testing.wasm* and *metadata.json* files using buttons on the right side.
 
-![artifacts](static/artifacts.png)
+<p align="center">
+  <img  src="static/artifacts.png">
+</p>
 
 Feel free to change the project and update the code and build it again, create a new project or anything else.
 
@@ -64,3 +104,11 @@ If you want to propose a feature or request, please open an issue or make a pull
 * Docker images are on Docker Hub:
   * [ink-plugin](https://hub.docker.com/repository/docker/blockchainit/ink-plugin)
   * [ink-server](https://hub.docker.com/repository/docker/blockchainit/ink-server)
+
+## How to run
+
+To run locally using docker-compose use:
+
+`docker-compose up`
+
+Feel free to change docker-compose.yml and play with it.

@@ -6,9 +6,7 @@ export interface LoaderProps {
     position: 'inline' | 'center';
 }
 
-const Loader: React.FC<LoaderProps> = ({ size, position }) => {
+export const Loader: React.FC<LoaderProps> = ({ size, position }) => {
     const className = [`loader-${size}`, `loader--${position}`].join(' ');
     return <div className={className}></div>;
 }
-
-export default Loader;

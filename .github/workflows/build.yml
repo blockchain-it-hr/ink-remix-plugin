@@ -1,8 +1,7 @@
 name: 'Push'
 on: ['push']
-
 jobs:
-  build:
+  build-and-publish-images:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: 'actions/checkout@v1'
@@ -13,4 +12,12 @@ jobs:
         DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
     - name: 'Trigger deployment'
       run: scripts/deploy.sh
-
+  publish-helm:
+      runs-on: 'ubuntu-latest'
+      steps:
+      - uses: actions/checkout@v1
+      - uses: J12934/helm-gh-pages-action@master
+        with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: develop
+          charts-folder: kubernetes/ink/

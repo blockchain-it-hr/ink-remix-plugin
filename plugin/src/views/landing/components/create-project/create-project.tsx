@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import inkService from '../../../ink';
-import { IMessage } from "../../../ink/types";
-import { newProject } from "../../../state/actions";
-import { useDispatchContext } from "../../../state/store";
-import { remixClient } from "../../../utils/remix-client";
-import { useAlert } from "../../../components/alert";
+import { useAlert } from "../../../../components/alert";
+import inkService from '../../../../ink';
+import { IMessage } from "../../../../ink/types";
+import { newProject } from "../../../../state/actions";
+import { useDispatchContext } from "../../../../state/store";
+import { remixClient } from "../../../../utils/remix-client";
 
 interface CreateProjectState {
     projectName: string
 }
 
-const CreateProjectSegment: React.FC = () => {
+const CreateProject: React.FC = () => {
 
     const dispatch = useDispatchContext();
     const [state, setState] = useState<CreateProjectState>({ projectName: null });
@@ -87,4 +87,4 @@ const CreateProjectSegment: React.FC = () => {
     );
 }
 
-export default CreateProjectSegment;
+export default CreateProject;

@@ -3,12 +3,12 @@ const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
     mode: 'development',
-    devtool: "source-map",
-    devServer: {
-        historyApiFallback: true,
-        port: '3000',
-        disableHostCheck: true,
-        hot: true,
-        host: 'localhost'
-    },
+    // devtool: "source-map",
+    // devServer: {
+    //     historyApiFallback: true,
+    //     port: '3000',
+    //     disableHostCheck: true,
+    //     hot: true,
+    //     host: 'localhost'
+    // },
 });

@@ -7,6 +7,7 @@ import { base64ToUint8Array } from '../../../utils';
 import { remixClient } from '../../../utils/remix-client';
 import { setBuildArtifacts } from '../state/actions';
 import { useProjectContext } from '../state/project-provider';
+import { useAlert } from '../../../components/alert';
 
 export interface BuildSegmentProps {
     project: IProject
@@ -16,6 +17,7 @@ const BuildSegment: React.FC<BuildSegmentProps> = ({ project }) => {
     
     let consoleContext = useConsoleContext();
     let projectContext = useProjectContext();
+    const alertManager = useAlert();
 
     const [state, setState] = useState({
         isBuilding: false
@@ -46,6 +48,7 @@ const BuildSegment: React.FC<BuildSegmentProps> = ({ project }) => {
                     })
                 )
                 setState({ isBuilding: false });
+                alertManager.clearAlert();
                 disconnect();
                 break;
             }
@@ -54,8 +57,10 @@ const BuildSegment: React.FC<BuildSegmentProps> = ({ project }) => {
         }
     }
     
+
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        alertManager.clearAlert();
         setState({ isBuilding: true });
 
         try {
@@ -64,9 +69,11 @@ const BuildSegment: React.FC<BuildSegmentProps> = ({ project }) => {
                 cargo: await remixClient.getFile(`.ink/${project.projectName}/Cargo.toml`)
             };
             
+            alertManager.setAlert('Build process may take some time...', 'warning');
             inkService.buildProject(Object.assign(project, projectFiles), onMessage);
         } catch (e) {
             setState({ isBuilding: false });
+            alertManager.setAlert(e.toString(), 'error');
             console.error(e);
         }
     }
@@ -81,6 +88,7 @@ const BuildSegment: React.FC<BuildSegmentProps> = ({ project }) => {
                     </button>
                 </div>
             </form>
+            {alertManager.AlertComponent}
             <Console />
         </div>
     );

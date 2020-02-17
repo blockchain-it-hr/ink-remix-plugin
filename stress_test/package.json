@@ -2,13 +2,14 @@
   "name": "stress_test",
   "version": "1.0.0",
   "description": "",
-  "main": "ws-client.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node ws-client.js"
+    "start": "node src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "ws": "^7.2.1"
   }
 }

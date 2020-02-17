@@ -1,4 +1,7 @@
+__snapshots__/
 .idea
 .vscode
 node_modules
 **/storage
+**/ids.file
+**/spinnaker-service-account.json

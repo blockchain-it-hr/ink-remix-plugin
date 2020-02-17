@@ -8,11 +8,13 @@ export interface ConsoleProps {
     logs: ILog[]
 }
 
-const Console: React.FC<ConsoleProps> = ({ logs }) => {
+export const Console: React.FC<ConsoleProps> = ({ logs }) => {
     const bodyRef = useRef(null);
     
     useEffect(() => { 
-        bodyRef.current.scrollTop = bodyRef.current.scrollHeight 
+        if (bodyRef.current) {
+            bodyRef.current.scrollTop = bodyRef.current.scrollHeight 
+        }
     }, [logs]);
 
     return (
@@ -32,6 +34,6 @@ const Console: React.FC<ConsoleProps> = ({ logs }) => {
 
 export default () => (
     <ConsoleConsumer>
-        {({state}) => <Console logs={state.logs} />}
+        {({state}) => <Console logs={state ? state.logs : []} />}
     </ConsoleConsumer>
 );
