@@ -5,8 +5,8 @@ cd ..
 #docker push blockchainit/rust-env
 
 #Build and push cargo contract
-#docker build --file server/Dockerfile.cargo-contract --tag blockchainit/cargo-contract:latest server
-#docker push blockchainit/cargo-contract
+docker build --file server/Dockerfile.cargo-contract --tag blockchainit/cargo-contract:latest server
+docker push blockchainit/cargo-contract
 
 #Build and push server
 TAG=latest

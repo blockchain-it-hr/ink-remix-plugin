@@ -24,6 +24,7 @@ docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 # build server
 docker build --file server/Dockerfile \
+             --no-cache \
              --tag blockchainit/ink-server:$TAG server/
 
 docker push blockchainit/ink-server:$TAG
@@ -31,6 +32,7 @@ docker push blockchainit/ink-server:$TAG
 # build plugin
 docker build --file plugin/Dockerfile \
              --tag blockchainit/ink-plugin:$TAG \
-             --build-arg WS_BASE_URL=$WS_BASE_URL plugin/
+             --no-cache \
+             --build-arg WS_BASE_URL=$WS_BASE_URL plugin/ 
 
 docker push blockchainit/ink-plugin:$TAG
