@@ -25,5 +25,5 @@ spec:
         ports:
         - name: plugin-port
           protocol: TCP
-          containerPort: 80
+          containerPort: 3000
 ---

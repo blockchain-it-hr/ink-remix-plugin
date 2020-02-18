@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 helm repo add jetstack https://charts.jetstack.io
 kubectl create namespace cert-manager
 kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
