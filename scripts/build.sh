@@ -3,7 +3,7 @@ set -e
 
 WS_DEVELOP_URL="wss://server.develop.ink-remix.blockchain-it.hr"
 WS_STAGING_URL="wss://server.staging.ink-remix.blockchain-it.hr"
-WS_PROD_URL="wss://server.staging.ink-remix.blockchain-it.hr"
+WS_PROD_URL="wss://server.ink-remix.blockchain-it.hr"
 
 function export_env {
   export TAG=$1
