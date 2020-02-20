@@ -34,8 +34,8 @@ install() {
     kc() { kubectl --context "${CONTEXT}" "$@"; }
 
     # enable automatic sidecar injection on the default namespace
-    kc label namespace default istio-injection=enabled --overwrite
-    kc label namespace ink istio-injection=enabled --overwrite
+    #kc label namespace default istio-injection=enabled --overwrite
+    #kc label namespace ink istio-injection=enabled --overwrite
 
     # install the ink service and expose it through the ingress gateway
     kc apply -f ink-gateway.yaml

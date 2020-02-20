@@ -1,102 +1,61 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
 metadata:
-  name: cert-htt01-challenge 
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: edi.sinovcic@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: istio-ingressgateway-certs
+    solvers:
+      - http01:
+          ingress:
+            class: istio
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: ingress-cert
   namespace: istio-system
 spec:
-  host: "*.istio-system.svc.cluster.local"
-  trafficPolicy:
-    tls:
-      # keeping the same mTLS mode as  `default` DestinationRule in istio-system 
-      mode: ISTIO_MUTUAL 
-    portLevelSettings:
-    - port:
-        # CertManager generate services to perform the challenge on port 8089
-        # it looks so far no other services in istio-system use this port
-        number: 8089
-      tls:
-        mode: DISABLE
+  secretName: ingress-cert
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 'ink-remix.blockchain-it.hr'
+  dnsNames:
+    - 'ink-remix.blockchain-it.hr'
+    - 'server.ink-remix.blockchain-it.hr'
 ---
-# ---
-# apiVersion: extensions/v1beta1
-# kind: Ingress
-# metadata:
-#   annotations:
-#     kubernetes.io/ingress.class: istio
-#   name: helloworld-ingress
-# spec:
-#   rules:
-#     - host: "ink-remix.blockchain-it.hr"
-#       http:
-#         paths:
-#           - path: /hello
-#             backend:
-#               serviceName: helloworld
-#               servicePort: 5000
-# ---
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: ink-gateway
+  annotations:
+    kubernetes.io/ingress.class: istio
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+  name: helloworld-ingress
 spec:
-  selector:
-    istio: ingressgateway # use istio default controller
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    # tls:
-    #   httpsRedirect: true
-    hosts:
-    - "*"
-    - "ink-remix.blockchain-it.hr"
-    - "server.ink-remix.blockchain-it.hr"
-  - port:
-      name: https
-      number: 443
-      protocol: HTTPS
-    hosts:
-    - "*"
-    - "ink-remix.blockchain-it.hr"
-    - "server.ink-remix.blockchain-it.hr"
-    tls:
-      credentialName: cert-ink
-      mode: SIMPLE
+  rules:
+    - host: "ink-remix.blockchain-it.hr"
+      http:
+        paths:
+          - path: /hello
+            backend:
+              serviceName: helloworld
+              servicePort: 5000
+    - host: "server.ink-remix.blockchain-it.hr"
+      http:
+        paths:
+        - backend:
+            serviceName: server-svc
+            servicePort: 80
+    - host: "ink-remix.blockchain-it.hr" 
+      http:
+        paths:
+          - backend:
+              serviceName: plugin-svc
+              servicePort: 80   
 ---
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: ink
-spec:
-  hosts:
-  - "ink-remix.blockchain-it.hr"
-  gateways:
-  - ink-gateway
-  http:
-  # - name: acme-solver
-  #   match:
-  #   - uri:
-  #       prefix: /.well-known
-  #   route:
-  #     destination: cm-acme-http-solver-
-  - name: server-route
-    match:
-    - uri:
-        prefix: /build
-    - uri:
-        prefix: /new
-    route:
-    - destination:
-        host: server-svc.ink.svc.cluster.local
-        port:
-          number: 80
-  - name: plugin-route
-    match:
-    - uri:
-        prefix: /
-    route:
-    - destination:
-        host: plugin-svc.ink.svc.cluster.local
-        port:
-          number: 80

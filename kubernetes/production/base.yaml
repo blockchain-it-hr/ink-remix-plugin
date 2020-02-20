@@ -6,12 +6,9 @@ spec:
       istio-ingressgateway:
         sds:
           enabled: true
-    security:
-      selfSigned: false
     global:
-      mtls:
-        enabled: true
       k8sIngress:
         enabled: true
-        enableHttps: false
+        enableHttps: true
         gatewayName: ingressgateway
+ 

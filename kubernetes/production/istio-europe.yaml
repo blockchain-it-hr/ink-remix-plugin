@@ -16,7 +16,7 @@ spec:
     global:
       controlPlaneSecurityEnabled: true
       k8sIngress:
-        enableHttps: false
+        enableHttps: true
         enabled: true
         gatewayName: ingressgateway
       meshNetworks:
@@ -24,19 +24,11 @@ spec:
           europe:
             endpoints:
             - fromRegistry: Kubernetes
-            gateways:
-            - address: 34.65.71.3
-              port: 443
           usa:
             endpoints:
-            - fromRegistry: 658e3341-50e5-11ea-af86-42010a9600bb
-            gateways:
-            - address: 35.245.34.52
-              port: 443
-      mtls:
-        enabled: true
+            - fromRegistry: a1195f20-53e1-11ea-bbd8-42010a96011e
       multiCluster:
-        clusterName: 7a8b1d83-50e5-11ea-a5ce-42010aac0011
+        clusterName: b375a234-53e1-11ea-b710-42010aac0075
       network: europe
     pilot:
       meshNetworks:
@@ -44,15 +36,7 @@ spec:
           europe:
             endpoints:
             - fromRegistry: Kubernetes
-            gateways:
-            - address: 34.65.71.3
-              port: 443
           usa:
             endpoints:
-            - fromRegistry: 658e3341-50e5-11ea-af86-42010a9600bb
-            gateways:
-            - address: 35.245.34.52
-              port: 443
-    security:
-      selfSigned: false
+            - fromRegistry: a1195f20-53e1-11ea-bbd8-42010a96011e
 

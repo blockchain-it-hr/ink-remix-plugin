@@ -1,2 +1,0 @@
-V	210211160423Z		100212	unknown	/C=US/ST=Denial/L=Springfield/O=Dis/CN=httpbin.example.com
-V	210211160425Z		100213	unknown	/C=US/ST=Denial/L=Springfield/O=Dis/CN=httpbin.example.com
