@@ -36,16 +36,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
-  name: helloworld-ingress
+  name: ink-ingress
 spec:
   rules:
-    - host: "ink-remix.blockchain-it.hr"
-      http:
-        paths:
-          - path: /hello
-            backend:
-              serviceName: helloworld
-              servicePort: 5000
     - host: "server.ink-remix.blockchain-it.hr"
       http:
         paths:

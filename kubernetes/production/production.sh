@@ -77,7 +77,7 @@ ${HELM_PATH}/helm init --service-account=tiller
 ${HELM_PATH}/helm repo update
 
 ${HELM_PATH}/helm version
-## Wait for version to be shown
+## Wait for versions to be shown
 
 ## Install helm chart on europe and usa clusters
 kubectx europe
@@ -90,20 +90,16 @@ ${HELM_PATH}/helm install --name ink ../ink
 ## Update charts if you want to update
 # No need if they have been just created
 # kubectx europe
-# ${HELM_PATH}/helm upgrade --namespace ink ink ../ink
+# ${HELM_PATH}/helm upgrade ink ../ink
 
 # kubectx usa
-# ${HELM_PATH}/helm upgrade --namespace ink ink ../ink
+# ${HELM_PATH}/helm upgrade ink ../ink
 
 # Reserve global ip
 gcloud compute addresses create --global production-ip
 
 #Or list if you already have one
 gcloud compute addresses list
-
-
-# Digital Ocean Kubernetes v1.16.6 cluster - 3 nodes x 2vCPUs 4GB RAM each - total 6vCPUs 12GB RAM.
-# (Set it to autoscale under "Nodes" to min 3, max 8 nodes just in case)
 
 # Install Istio per the instructions here https://istio.io/docs/tasks/traffic-management/ingress/ingress-certmgr/
 istioctl manifest apply \
@@ -149,7 +145,7 @@ kubectl delete pods --all -n cert-manager
 # Wait until Cert Manager is all back up and running again
 kubectl get pods -n cert-manager
 
-kubectl apply -f ink-gateway.yaml
+kubectl apply -f template.yaml
 
 # Wait for the certificate to be ready:
 kubectl -n istio-system describe certificate ingress-cert 
