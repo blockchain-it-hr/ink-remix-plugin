@@ -3,17 +3,14 @@ kind: Service
 metadata:
   name: server-svc
   labels:
-    namespace: ink
     app: ink
-    component: server
+    component: server-svc
 spec:
   type: ClusterIP
   selector:
     app: ink
     component: server
-  type: 
   ports:
-  - name: server-port
-    protocol: TCP
+  - name: http
     port: 80
     targetPort: 65520

@@ -4,7 +4,6 @@ metadata:
   name: plugin
   labels:
     app: ink
-    namespace: ink
     component: plugin
 spec:
   replicas: {{ .Values.plugin.replicas }}
@@ -25,5 +24,5 @@ spec:
         ports:
         - name: plugin-port
           protocol: TCP
-          containerPort: 80
+          containerPort: 3000
 ---

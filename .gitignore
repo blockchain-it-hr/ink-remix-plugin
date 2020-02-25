@@ -4,4 +4,9 @@ __snapshots__/
 node_modules
 **/storage
 **/ids.file
-**/spinnaker-service-account.json
+kubernetes/spinnaker-service-account.json
+kubernetes/productions/certs
+kubernetes/productions/helm*
+kubernetes/productions/kubectx
+**/linux-amd64
+**/mtls-go-example

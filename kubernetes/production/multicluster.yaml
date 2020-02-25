@@ -1,0 +1,14 @@
+kind: Config
+apiVersion: v1
+clusters:
+- cluster:
+  name: europe
+- cluster:
+  name: usa
+contexts:
+- context:
+    cluster: europe
+  name: europe
+- context:
+    cluster: usa
+  name: usa

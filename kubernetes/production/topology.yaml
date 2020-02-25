@@ -1,0 +1,29 @@
+# auto-generated mesh topology file.
+
+# Example topology description.
+#
+# mesh_id: inkmesh
+# contexts:
+#   # 'cluster0' is the cluster's context as defined by the
+#   # current kubeconfig file
+#   cluster0:
+#     # 'network' is a user chosen name of the cluster's
+#     # network, e.g. name of the VPC the cluster is running in.
+#     network: network-0
+#
+#     # name of the k8s serviceaccount other clusters will use
+#     # when reading services from this cluster.
+#     serviceAccountReader: istio-reader-service-account
+#
+#   # multiple clusters can be added.
+#   cluster1:
+#     network: network-1
+#     serviceAccountReader: istio-reader-service-account
+#
+
+mesh_id: inkmesh
+contexts:
+  europe:
+    network: europe
+  usa:
+    network: usa

@@ -1,0 +1,61 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: edi.sinovcic@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: istio-ingressgateway-certs
+    solvers:
+      - http01:
+          ingress:
+            class: istio
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: ingress-cert
+  namespace: istio-system
+spec:
+  secretName: ingress-cert
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 'ink-remix.blockchain-it.hr'
+  dnsNames:
+    - 'ink-remix.blockchain-it.hr'
+    - 'server.ink-remix.blockchain-it.hr'
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+  name: helloworld-ingress
+spec:
+  rules:
+    - host: "ink-remix.blockchain-it.hr"
+      http:
+        paths:
+          - path: /hello
+            backend:
+              serviceName: helloworld
+              servicePort: 5000
+    - host: "server.ink-remix.blockchain-it.hr"
+      http:
+        paths:
+        - backend:
+            serviceName: server-svc
+            servicePort: 80
+    - host: "ink-remix.blockchain-it.hr" 
+      http:
+        paths:
+          - backend:
+              serviceName: plugin-svc
+              servicePort: 80   
+---
