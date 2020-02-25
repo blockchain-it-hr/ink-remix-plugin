@@ -69,6 +69,11 @@ If you want to delete just run
 helm del --purge ink
 ```
 
+### Running in Kubernetes
+For running in single cluster go to single_cluster_deployment.sh
+
+For running multicluster deployments setup mesh and then install helm chart for both clusters (production.sh)
+
 #### Troubleshooting
 
 If you are missing Tiller just run:

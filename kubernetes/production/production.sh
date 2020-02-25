@@ -165,36 +165,36 @@ kubectl -n istio-system describe challenge ingress-cert-4051514424-3229718444-35
 
 ## Istio mesh 
 # All configuration is done again, but if you already used previous steps feel free to skip
-export WORKDIR=$(pwd)
-mkdir -p ${WORKDIR}
-cd ${WORKDIR}
-export MESH_ID=inkmesh
-export ORG_NAME=ink-remix
-wget https://raw.githubusercontent.com/istio/istio/release-1.4/samples/multicluster/setup-mesh.sh
-chmod +x setup-mesh.sh
+# export WORKDIR=$(pwd)
+# mkdir -p ${WORKDIR}
+# cd ${WORKDIR}
+# export MESH_ID=inkmesh
+# export ORG_NAME=ink-remix
+# wget https://raw.githubusercontent.com/istio/istio/release-1.4/samples/multicluster/setup-mesh.sh
+# chmod +x setup-mesh.sh
 #./setup-mesh.sh prep-mesh
 
 # Add contexts to topology.yaml or renmae topology.example.yaml to topology.yaml
-./setup-mesh.sh apply
+# ./setup-mesh.sh apply
 
 # Get ingress IP of istio
-kubectl get svc istio-ingressgateway -n istio-system
+# kubectl get svc istio-ingressgateway -n istio-system
 
 # Add istio-injection to both default and ink namespaces
-kubectl label namespace cert-manager istio-injection=enabled
-kubectl label namespace default istio-injection=enabled
-kubectl label namespace ink istio-injection=enabled
+# kubectl label namespace cert-manager istio-injection=enabled
+# kubectl label namespace default istio-injection=enabled
+# kubectl label namespace ink istio-injection=enabled
 
 # This way you deploy gateway for the helm chart
-./deploy-to-multicluster.sh install
+# ./deploy-to-multicluster.sh install
 
 # If istio has external ip
-export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
-export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
+# export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+# export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
+# export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
 
-export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
-echo $GATEWAY_URL
+# export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+# echo $GATEWAY_URL
 # go to the link and see that app is working
 
 

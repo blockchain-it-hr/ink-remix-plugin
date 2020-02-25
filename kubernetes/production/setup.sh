@@ -45,7 +45,6 @@ kubectl get svc $INGRESSGATEWAY --namespace istio-system
 # This way you deploy gateway for the helm charts, in this case 
 ./deploy_to_multicluster.sh install
 
-
 gcloud compute addresses list
 
 
