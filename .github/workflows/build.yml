@@ -6,7 +6,7 @@ on:
       - develop
       - staging
 jobs:
-  build:
+  build-and-publish-images:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: 'actions/checkout@v1'

@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  ink:
+  - apiVersion: v1
+    appVersion: 0.1.13
+    created: "2020-01-13T14:44:29.693598156Z"
+    description: ink
+    digest: b00deda5b46981894f6f2bc84eedff5f523e0e69b86b23cb903d03fbe99b1438
+    keywords:
+    - ink
+    maintainers:
+    - email: edi@blockchain-it.hr
+      name: Edi Sinovcic
+    name: ink
+    sources:
+    - https://github.com/blockchain-it-hr/ink-remix-plugin
+    urls:
+    - https://github.com/blockchain-it-hr/ink-remix-plugin/releases/download/ink-0.1.13/ink-0.1.13.tgz
+    version: 0.1.13
+generated: "2020-01-13T14:44:29.536393989Z"
