@@ -26,6 +26,7 @@ kubectx spinnaker=gke_${PROJECT_ID}_us-east4-a_spinnaker
   
 ####
 
+
 PROJECT_NAME=ink-server
 gcloud config set project $PROJECT_NAME
 
