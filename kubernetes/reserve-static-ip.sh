@@ -1,1 +1,2 @@
-gcloud compute addresses create static-ip-staging --global
+STATIC_IP="production-ip"
+gcloud compute addresses create --global "${STATIC_IP}"

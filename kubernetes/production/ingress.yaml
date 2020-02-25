@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ink-rules
+  labels:
+    namespace: ink
+    component: ink-ingress
+  namespace: ink
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: production-ip-staging
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.org/websocket-services: "server-svc"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+spec:
+  tls:
+  - hosts:
+    - ink-remix.blockchain-it.hr
+    - server.ink-remix.blockchain-it.hr    
+    secretName: cert-staging-tls

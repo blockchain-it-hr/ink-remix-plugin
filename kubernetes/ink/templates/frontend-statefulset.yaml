@@ -4,7 +4,6 @@ metadata:
   name: plugin
   labels:
     app: ink
-    namespace: ink
     component: plugin
 spec:
   replicas: {{ .Values.plugin.replicas }}

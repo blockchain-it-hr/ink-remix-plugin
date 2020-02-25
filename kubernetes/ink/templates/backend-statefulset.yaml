@@ -4,7 +4,6 @@ metadata:
   name: server
   labels:
     app: ink
-    namespace: ink
     component: server
 spec:
   replicas: {{ .Values.server.replicas }}

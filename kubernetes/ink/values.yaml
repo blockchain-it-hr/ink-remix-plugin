@@ -2,7 +2,7 @@ imagePullPolicy: Always
 server:
   repository: blockchainit/ink-server
   tag: stable
-  replicas: 4
+  replicas: 3
 plugin:
   repository: blockchainit/ink-plugin
   tag: stable
