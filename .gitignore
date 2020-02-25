@@ -10,3 +10,4 @@ kubernetes/productions/helm*
 kubernetes/productions/kubectx
 **/linux-amd64
 **/mtls-go-example
+**/spinnaker-service-account.json
