@@ -24,9 +24,17 @@ Bigger folders have their own READMEs with more detailed description.
 
 ## How to use
 
-Go to [Remix alpha](https://remix-alpha.ethereum.org/) or [Remix](https://remix.ethereum.org/) and then to *Plugin manager*.
+If you want to just activate and use ink plugin, go to [Remix alpha](https://remix-alpha.ethereum.org/).  
+Search for "ink" in the *Plugin manager* and click on *Activate*.
 
-Then in the plugin manager click on *Connect to a Local Plugin*.
+<p align="center">
+  <img  src="static/pluginManagerSearch.png">
+</p>
+
+Or, if you want to use the development version, go to either [Remix alpha](https://remix-alpha.ethereum.org/) or [Remix](https://remix.ethereum.org/)
+and then to *Plugin manager*.
+
+Then in the *Plugin manager* click on *Connect to a Local Plugin*.
 
 <p align="center">
   <img  src="static/plugin_manager.png">
@@ -35,7 +43,8 @@ Then in the plugin manager click on *Connect to a Local Plugin*.
 You can set *Plugin Name* and *Display Name* to any string.  
 Url is: 
 * <https://develop.ink-remix.blockchain-it.hr> for development
-* <https://develop.ink-remix.blockchain-it.hr> for staging  
+* <https://staging.ink-remix.blockchain-it.hr> for staging  
+* <https://https://ink-remix.blockchain-it.hr> for production
 Click ok.
 
 <p align="center">
@@ -56,11 +65,6 @@ Input *project/contract name* and click on *Create project*.
   <img  src="static/project_created.png">
 </p>
 
-Next step is to create a project.  
-Input *project/contract name* and click on *Create project*.
-
-![project_created](static/project_created.png)
-
 There will be a couple of permission screens, accept them all. :)
 
 <p align="center">
@@ -70,7 +74,7 @@ There will be a couple of permission screens, accept them all. :)
 Next click on *Testing*. It will open a screen like on the next image.
 
 <p align="center">
-  <img  src="static/building.png">
+  <img  src="static/emptyLog.png">
 </p>
 
 Click on the build button. As building progresses you will see logs from the backend building logs in real-time.  
@@ -78,7 +82,7 @@ Click on the build button. As building progresses you will see logs from the bac
 Your log should look something like this after a successful build.  
 
 <p align="center">
-  <img  src="static/finished_output.png">
+  <img  src="static/built.png">
 </p>
 
 Congratulations you’ve managed to create and build your first ink! project. :)  
