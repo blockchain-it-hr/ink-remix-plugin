@@ -98,6 +98,7 @@ Feel free to change the project and update the code and build it again, create a
 
 * Package whole project into tar/zip so it can be extracted and used elsewhere
 * Integrating version control into the flow (git add, commit, push)
+* Add dependency caching for faster build times
 
 If you want to propose a feature or request, please open an issue or make a pull request
 
