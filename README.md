@@ -44,7 +44,7 @@ You can set *Plugin Name* and *Display Name* to any string.
 Url is: 
 * <https://develop.ink-remix.blockchain-it.hr> for development
 * <https://staging.ink-remix.blockchain-it.hr> for staging  
-* <https://https://ink-remix.blockchain-it.hr> for production
+* <https://https://ink-remix.blockchain-it.hr> for production  
 Click ok.
 
 <p align="center">
@@ -77,7 +77,7 @@ Next click on *Testing*. It will open a screen like on the next image.
   <img  src="static/emptyLog.png">
 </p>
 
-Click on the build button. As building progresses you will see logs from the backend building logs in real-time.  
+Click on the *Build* button. As building progresses you will see logs from the backend building logs in real-time.  
 
 Your log should look something like this after a successful build.  
 
