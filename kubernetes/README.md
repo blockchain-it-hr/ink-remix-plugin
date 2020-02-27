@@ -96,6 +96,9 @@ kubectl --namespace kube-system patch deploy tiller-deploy \
 
 https://github.com/helm/helm/issues/3130
 
+If you see that some pods are not running, check if your clusters have enough RAM.
+If not, you can set "--num-nodes 2" when creating cluster or manually expand him.
+
 ### Installing Ingress
 
 ```bash

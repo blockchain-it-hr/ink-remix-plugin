@@ -3,9 +3,7 @@ kind: Ingress
 metadata:
   name: ink-rules
   labels:
-    namespace: ink
     component: ink-ingress
-  namespace: ink
   annotations:
     kubernetes.io/ingress.global-static-ip-name: production-ip-staging
     kubernetes.io/ingress.class: nginx

@@ -108,6 +108,15 @@ istioctl manifest apply \
   --set values.global.k8sIngress.enableHttps=true \
   --set values.global.k8sIngress.gatewayName=ingressgateway
   
+
+kubectl label namespace default istio-injection=enabled --overwrite
+#If you are using istio, you have to do these steps again for europe and usa
+kubectx europe
+${HELM_PATH}/helm del --purge ink
+${HELM_PATH}/helm install --name ink ../ink
+kubectx usa
+${HELM_PATH}/helm del --purge ink
+${HELM_PATH}/helm install --name ink ../ink
 # Wait until all Istio pods are ready...
 kubectl get pods -n istio-system
 
