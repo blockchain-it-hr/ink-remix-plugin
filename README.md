@@ -94,6 +94,12 @@ Now, you can select tab *ARTIFACTS* above output window which will give you the 
 
 Feel free to change the project and update the code and build it again, create a new project or anything else.
 
+## Production deployment  
+If you want to deploy your own kubernetes clusters with *ink-remix-plugin*, look into  
+*kubernetes/README.md*. That will help you set up your values in templates which will be used  
+in *kubernetes/production/production.sh* script. Carefully follow steps in that script and read useful comments.  
+If you experience some problems, take a look at *Troubleshooting* section of *README.md* file.
+
 ## Possible upgrades in the future
 
 * Package whole project into tar/zip so it can be extracted and used elsewhere
