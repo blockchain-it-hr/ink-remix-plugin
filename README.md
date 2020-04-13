@@ -44,7 +44,7 @@ You can set *Plugin Name* and *Display Name* to any string.
 Url is: 
 * <https://develop.ink-remix.blockchain-it.hr> for development
 * <https://staging.ink-remix.blockchain-it.hr> for staging  
-* <https://https://ink-remix.blockchain-it.hr> for production  
+* <https://ink-remix.blockchain-it.hr> for production  
 Click ok.
 
 <p align="center">
